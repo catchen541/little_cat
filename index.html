@@ -20,6 +20,9 @@
       a {
         color: white;
       }
+      div {
+        color: white;
+      }
     </style>
     <h1>服務條款</h1>
     <p>如使用此Discord bot即表示您閱讀、了解並同意遵守了以下條款<br/>
@@ -40,7 +43,59 @@
   </body>
   <iframe src="https://discord.com/widget?id=1061475265924038758&theme=dark" width="350" height="500" allowtransparency="true" frameborder="0" sandbox="allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts"></iframe>
   
+  <style>
+    a:link {
+        color:rgb(0, 200, 255);
+    }
+    a:hover {
+        color: blue;
+    }
+    a:visited {
+      display: none;
+    }
+    a:active {
+        color: purple;
+    }
+  </style>
+
   <a href="https://discordapp.com/api/oauth2/authorize?client_id=1144161789832069141&redirect_uri=https://catchen541.github.io/little_cat/&response_type=code&scope=identify">
-    登入使用 Discord(開發中)
+    登入使用Discord(開發中)
   </a>
-  </html>
+  <script>
+    function getDiscordInfo() {
+      // 使用 OAuth 2.0 獲取 Discord 資訊
+      var xhr = new XMLHttpRequest();
+      xhr.open("GET", "https://discordapp.com/api/oauth2/authorize?client_id=YOUR_CLIENT_ID&redirect_uri=YOUR_REDIRECT_URI&response_type=code&scope=identify");
+      xhr.send();
+    
+      // 處理回應
+      xhr.onload = function() {
+        if (xhr.status === 200) {
+          var code = xhr.responseText;
+    
+          // 使用 Discord API 獲取使用者資訊
+          var xhr = new XMLHttpRequest();
+          xhr.open("GET", "https://discordapp.com/api/users/@me?access_token=" + code);
+          xhr.send();
+    
+          // 處理回應
+          xhr.onload = function() {
+            if (xhr.status === 200) {
+              var user = JSON.parse(xhr.responseText);
+    
+              // 顯示使用者資訊
+              document.getElementById("user-info").innerHTML = "使用者名稱：" + user.username + "<br />使用者 ID：" + user.id;
+            } else {
+              console.log("錯誤：" + xhr.statusText);
+            }
+          };
+        } else {
+          console.log("錯誤：" + xhr.statusText);
+        }
+      };
+    }
+    </script>
+    
+  <div id="user-info"></div>
+
+</html>
