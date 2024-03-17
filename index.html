@@ -62,48 +62,15 @@
   </style>
 
   
-  <!-- <a href="https://discordapp.com/api/oauth2/authorize?client_id=1144161789832069141&redirect_uri=https://catchen541.github.io/little_cat/&response_type=code&scope=identify">
+  <a href="https://discord.com/oauth2/authorize?client_id=1144161789832069141&response_type=code&redirect_uri=https%3A%2F%2Fcatchen541.github.io%2Flittle_cat%2F&scope=guilds+identify">
     使用Discord登入
-  </a> -->
+  </a>
 
 
+  <python>
+    
+  </python>
 
-  <div id="user-info">未授權</div>
 
-  <script>
-  // 使用 OAuth 2.0 驗證 Discord 授權
-  var xhr = new XMLHttpRequest();
-  xhr.open("GET", "https://discordapp.com/api/oauth2/authorize?client_id=1144161789832069141&redirect_uri=https://catchen541.github.io/little_cat/&response_type=code&scope=identify");
-  xhr.send();
-
-  // 處理回應
-  xhr.onload = function() {
-    if (xhr.status === 200) {
-      var code = xhr.responseText;
-
-      // 使用 Discord API 驗證授權
-      var xhr = new XMLHttpRequest();
-      xhr.open("GET", "https://discordapp.com/api/users/@me?access_token=" + code);
-      xhr.send();
-
-      // 處理回應
-      xhr.onload = function() {
-        if (xhr.status === 200) {
-          // 使用者已授權
-          var user = JSON.parse(xhr.responseText);
-
-          // 顯示使用者資訊
-          document.getElementById("user-info").innerHTML = "使用者名稱：" + user.username + "<br />使用者 ID：" + user.id;
-        } else {
-          // 使用者未授權
-          document.getElementById("user-info").innerHTML = "您尚未授權 Discord 帳號給此網站。";
-        }
-      };
-    } else {
-      console.log("錯誤：" + xhr.statusText);
-    }
-  };
-  </script>
-  
 
 </html>
