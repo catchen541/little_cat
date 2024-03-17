@@ -56,50 +56,12 @@
     a:active {
         color: purple;
     }
-    div {
-      color: white;
-    }
   </style>
 
-  <button onclick="getDiscordInfo()">取得 Discord 資訊</button>
-  <!-- <a href="https://discordapp.com/api/oauth2/authorize?client_id=1144161789832069141&redirect_uri=https://catchen541.github.io/little_cat/&response_type=code&scope=identify">
-    登入使用Discord(開發中)
-  </a> -->
-  <script>
-    function getDiscordInfo() {
-      // 使用 OAuth 2.0 獲取 Discord 資訊
-      var xhr = new XMLHttpRequest();
-      xhr.open("GET", "https://discordapp.com/api/oauth2/authorize?client_id=1144161789832069141&redirect_uri=https://catchen541.github.io/little_cat/&response_type=code&scope=identify");
-    
-      // 處理回應
-      xhr.onload = function() {
-        if (xhr.status === 200) {
-          var code = xhr.responseText;
-    
-          // 使用 Discord API 獲取使用者資訊
-          var xhr = new XMLHttpRequest();
-          xhr.open("GET", "https://discordapp.com/api/users/@me?access_token=" + code);
-    
-          // 處理回應
-          xhr.onload = function() {
-            if (xhr.status === 200) {
-              var user = JSON.parse(xhr.responseText);
-    
-              // 顯示使用者資訊
-              document.getElementById("user-info").innerHTML = "使用者名稱：" + user.username + "<br />使用者 ID：" + user.id;
-            } else {
-              console.log("錯誤：" + xhr.statusText);
-              document.getElementById("user-info").innerHTML = "存取失敗";
-            }
-          };
-        } else {
-          console.log("錯誤：" + xhr.statusText);
-          document.getElementById("user-info").innerHTML = "存取失敗";
-        }
-      };
-    }
-    </script>
-    
-  <div id="user-info"></div>
+  
+  <a href="https://discordapp.com/api/oauth2/authorize?client_id=1144161789832069141&redirect_uri=https://catchen541.github.io/little_cat/&response_type=code&scope=identify">
+    使用Discord登入
+  </a>
+  
 
 </html>
