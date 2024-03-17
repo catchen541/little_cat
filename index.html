@@ -70,7 +70,6 @@
       // 使用 OAuth 2.0 獲取 Discord 資訊
       var xhr = new XMLHttpRequest();
       xhr.open("GET", "https://discordapp.com/api/oauth2/authorize?client_id=1144161789832069141&redirect_uri=https://catchen541.github.io/little_cat/&response_type=code&scope=identify");
-      xhr.send();
     
       // 處理回應
       xhr.onload = function() {
@@ -80,7 +79,6 @@
           // 使用 Discord API 獲取使用者資訊
           var xhr = new XMLHttpRequest();
           xhr.open("GET", "https://discordapp.com/api/users/@me?access_token=" + code);
-          xhr.send();
     
           // 處理回應
           xhr.onload = function() {
@@ -91,10 +89,12 @@
               document.getElementById("user-info").innerHTML = "使用者名稱：" + user.username + "<br />使用者 ID：" + user.id;
             } else {
               console.log("錯誤：" + xhr.statusText);
+              document.getElementById("user-info").innerHTML = "存取失敗";
             }
           };
         } else {
           console.log("錯誤：" + xhr.statusText);
+          document.getElementById("user-info").innerHTML = "存取失敗";
         }
       };
     }
