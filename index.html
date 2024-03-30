@@ -22,11 +22,45 @@
         color: white;
         text-align: right;
       }
+
+
+
+      #scrollButton {
+            display: none;
+            position: fixed;
+            bottom: 60px;
+            right: 20px;
+            background-color: rgb(146, 140, 140);
+            color: black;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+      }
+
+      #lightButton {
+            position: fixed;
+            bottom: 10px;
+            right: 20px;
+            background-color: white;
+            color: black;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+      }
+
+
+
       
     </style>
+    <button id="scrollButton" onclick="scrollToTop()">⬆</button>
+    <button id="lightButton" onclick="lightchange()">🔅</button>
+
     <img src="https://logodownload.org/wp-content/uploads/2017/11/discord-logo-0.png" style="width: 60px; height: 60px; position: absolute; top: 0px; right: 2px;">
     <!-- onclick="window.location.href='https://discord.com/oauth2/authorize?client_id=1144161789832069141&response_type=code&redirect_uri=https://catchen541.github.io/little_cat/&scope=guilds+identify'" -->
     <button id='sign' style="position:absolute; top: 55px; right: 3px; width: 56px; height: 27px;"  onclick="login()">登入</button>
+
     <script>
       function login() {
           var button = document.getElementById('sign');
@@ -39,9 +73,65 @@
           }, 1500);
           
       }
+
+      function lightchange() {
+        var button = document.getElementById('lightButton');
+        var body = document.body
+        var buttontext = button.innerText;
+        var titletext1 = document.getElementById('title1');
+        var ptext1 = document.getElementById('p-text1');
+        var titletext2 = document.getElementById('title2');
+        var ptext2 = document.getElementById('p-text2');
+        if (buttontext == '💫') {
+          button.innerText = '🔅';
+          document.body.style.backgroundColor = "#000000";
+          titletext1.style.color = "#ffffff"
+          ptext1.style.color = "#ffffff"
+          titletext2.style.color = "#ffffff"
+          ptext2.style.color = "#ffffff"
+          button.style.backgroundColor = "#ffffff"
+        };
+        if (buttontext == '🔅') {
+          button.innerText = '💫';
+          document.body.style.backgroundColor = "#ffffff"; // 将背景颜色设置为白色
+          titletext1.style.color = "#000000"
+          ptext1.style.color = "#000000"
+          titletext2.style.color = "#000000"
+          ptext2.style.color = "#000000"
+          button.style.backgroundColor = "#000000";
+        };
+      }
+
+      // 當頁面滾動時檢查是否顯示按鈕
+      window.onscroll = function() {scrollFunction()};
+
+      function scrollFunction() {
+          var scrollButton = document.getElementById("scrollButton");
+          if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+              scrollButton.style.display = "block";
+              scrollButton.style.opacity = "1";
+          } else {
+              scrollButton.style.opacity = "0";
+              setTimeout(function() {
+                  scrollButton.style.display = "none";
+              }, 70); // 等待動畫結束後隱藏按鈕
+          }
+      }
+
+      // 滾動到頁面頂部函數
+      function scrollToTop() {
+          var currentScroll = document.documentElement.scrollTop || document.body.scrollTop;
+          if (currentScroll > 0) {
+              window.requestAnimationFrame(scrollToTop);
+              window.scrollTo(0, currentScroll - (currentScroll / 8)); // 調整 8 可以控制滾動速度
+          }
+      }
+
     </script>
-    <h1>服務條款</h1>
-    <p>如使用此Discord bot即表示您閱讀、了解並同意遵守了以下條款<br/>
+
+
+    <h1 id="title1">服務條款</h1>
+    <p id="p-text1">如使用此Discord bot即表示您閱讀、了解並同意遵守了以下條款<br/>
       請務必詳細閱讀，
       若您不同意條款則請立即取消使用機器人且不要使用我們的服務<br/><br/>
       
@@ -49,11 +139,11 @@
       您需要同意不修改、複製、出售、轉讓、抄襲任何部分，除非有得到我們的同意證明(內含詳細說明)<br/><br/>
       
       <u><b>隱私保護</b></u><br/>
-      我們不會收集、儲存、分享或公開任何的使用者資訊的訊息(除受到法律授權)</p>
-  </body>
-  <body>
-    <h1>隱私條款</h1>
-    <p>因為避免有人使用(匿名)指令發送不當字詞與言論，我們會將資料紀錄置後台
+      我們不會收集、儲存、分享或公開任何的使用者資訊的訊息(除受到法律授權)
+    </p>
+
+    <h1 id="title2">隱私條款</h1>
+    <p id="p-text2">因為避免有人使用(匿名)指令發送不當字詞與言論，我們會將資料紀錄置後台
       但所有的資料將不對任何人透露、分享、檢視<br/>
       必要時可要求開發者釋出，但是需要提出詳細且合理的原因、發送時間、內容、伺服器、證明您為此伺服器的管理員或擁有者</p>
   </body>
@@ -88,9 +178,9 @@
   </style>
 
   
-  <button style="width: 150px; height: 50px; background-color: rgb(14, 110, 255); border-width: 2px; border-color: rgb(0, 31, 110); border-radius: 9px;" onclick="window.location.href = 'https://discord.com/api/oauth2/authorize?client_id=1144161789832069141&permissions=39860474866806&scope=bot'" ><b>邀請至伺服器<br/>(小喵喵)</b></button>
-  <button style="width: 150px; height: 50px; background-color: rgb(14, 110, 255); border-width: 2px; border-color:rgb(0, 31, 110); border-radius: 9px;" onclick="window.location.href = 'https://discord.com/api/oauth2/authorize?client_id=1167443358336167966&permissions=39860474866806&scope=bot'"><b>邀請至伺服器<br/>(代理)</b></button><br/>
-  <button style="width: 150px; height: 50px; background-color: rgb(14, 110, 255); border-radius: 9px;" onclick="window.open('https://discord.gg/2hMVBxuBrQ')"><b>加入伺服器</b></button><br/>
+  <button style="width: 150px; height: 50px; background-color: rgb(14, 110, 255); border: none; border-radius: 5px;" onclick="window.location.href = 'https://discord.com/api/oauth2/authorize?client_id=1144161789832069141&permissions=39860474866806&scope=bot'" ><b>邀請至伺服器<br/>(小喵喵)</b></button>
+  <button style="width: 150px; height: 50px; background-color: rgb(14, 110, 255); border: none; border-radius: 5px;" onclick="window.location.href = 'https://discord.com/api/oauth2/authorize?client_id=1167443358336167966&permissions=39860474866806&scope=bot'"><b>邀請至伺服器<br/>(代理)</b></button><br/>
+  <button style="width: 150px; height: 50px; background-color: rgb(14, 110, 255); border: none; border-radius: 5px;" onclick="window.open('https://discord.gg/2hMVBxuBrQ')"><b>加入伺服器</b></button><br/>
   <iframe src="https://discord.com/widget?id=1061475265924038758&theme=dark" width="400" height="450" allowtransparency="true" frameborder="0" sandbox="allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts" style="position: absolute; left: 8px;"></iframe>
   <script src="https://discord.com/oauth2/authorize?client_id=1144161789832069141&response_type=code&redirect_uri=https://catchen541.github.io/little_cat/&scope=guilds+identify"></script>
 
