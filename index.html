@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html>
   <head>
@@ -19,10 +20,26 @@
       }
       a {
         color: white;
+        text-align: right;
       }
+      
     </style>
-    <img src="https://logodownload.org/wp-content/uploads/2017/11/discord-logo-0.png" style="width: 60px; height: 60px; position: absolute; top: 0px; right: 1px;">
-    <button disabled style="position:absolute; top: 55px; right: 3px; width: 50px; height: 27px;" onclick="window.location.href='https://discord.com/oauth2/authorize?client_id=1144161789832069141&response_type=code&redirect_uri=https://catchen541.github.io/little_cat/&scope=guilds+identify'">登入</button>
+    <img src="https://logodownload.org/wp-content/uploads/2017/11/discord-logo-0.png" style="width: 60px; height: 60px; position: absolute; top: 0px; right: 2px;">
+    <!-- onclick="window.location.href='https://discord.com/oauth2/authorize?client_id=1144161789832069141&response_type=code&redirect_uri=https://catchen541.github.io/little_cat/&scope=guilds+identify'" -->
+    <button id='sign' style="position:absolute; top: 55px; right: 3px; width: 56px; height: 27px;"  onclick="login()">登入</button>
+    <script>
+      function login() {
+          var button = document.getElementById('sign');
+          button.innerText = '開發中';
+          button.disabled = true;
+
+          setTimeout(function() {
+              button.disabled = false;
+              button.innerText = '登入';
+          }, 1500);
+          
+      }
+    </script>
     <h1>服務條款</h1>
     <p>如使用此Discord bot即表示您閱讀、了解並同意遵守了以下條款<br/>
       請務必詳細閱讀，
