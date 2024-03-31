@@ -1,4 +1,5 @@
 
+
 <!DOCTYPE html>
 <html>
   <head>
@@ -57,7 +58,7 @@
     <button id="scrollButton" onclick="scrollToTop()">⬆</button>
     <button id="lightButton" onclick="lightchange()">🔅</button>
 
-    <img src="https://logodownload.org/wp-content/uploads/2017/11/discord-logo-0.png" style="width: 60px; height: 60px; position: absolute; top: 0px; right: 2px;">
+    <img id='head_pc' src="https://images-ext-1.discordapp.net/external/2EJ0PrzC7RKE0BDvFtdFeYpLa4qoK0n8wQOzfrUhh0U/%3Fsize%3D1024/https/cdn.discordapp.com/avatars/1167443358336167966/946efd4a4377a30885ba54ceeb9a0320.png?format=webp&quality=lossless&width=577&height=577" style="width: 58px; height: 58px; position: absolute; top: 0px; right: 2px;">
     <!-- onclick="window.location.href='https://discord.com/oauth2/authorize?client_id=1144161789832069141&response_type=code&redirect_uri=https://catchen541.github.io/little_cat/&scope=guilds+identify'" -->
     <button id='sign' style="position:absolute; top: 55px; right: 3px; width: 56px; height: 27px;"  onclick="login()">登入</button>
 
@@ -82,23 +83,35 @@
         var ptext1 = document.getElementById('p-text1');
         var titletext2 = document.getElementById('title2');
         var ptext2 = document.getElementById('p-text2');
+        var linkbutton1 = document.getElementById('linkbutton1');
+        var linkbutton2 = document.getElementById('linkbutton2');
+        var linkbutton3 = document.getElementById('linkbutton3');
+        var head_picture = document.getElementById('head_pc');
         if (buttontext == '💫') {
           button.innerText = '🔅';
           document.body.style.backgroundColor = "#101072";
-          titletext1.style.color = "#ffffff"
-          ptext1.style.color = "#ffffff"
-          titletext2.style.color = "#ffffff"
-          ptext2.style.color = "#ffffff"
-          button.style.backgroundColor = "#2583f7"
+          titletext1.style.color = "#ffffff";
+          ptext1.style.color = "#ffffff";
+          titletext2.style.color = "#ffffff";
+          ptext2.style.color = "#ffffff";
+          button.style.backgroundColor = "#2583f7";
+          linkbutton1.style.backgroundColor = "rgb(14, 110, 255)";
+          linkbutton2.style.backgroundColor = "rgb(14, 110, 255)";
+          linkbutton3.style.backgroundColor = "rgb(14, 110, 255)";
+          head_picture.src = "https://images-ext-1.discordapp.net/external/2EJ0PrzC7RKE0BDvFtdFeYpLa4qoK0n8wQOzfrUhh0U/%3Fsize%3D1024/https/cdn.discordapp.com/avatars/1167443358336167966/946efd4a4377a30885ba54ceeb9a0320.png?format=webp&quality=lossless&width=577&height=577";
         };
         if (buttontext == '🔅') {
           button.innerText = '💫';
           document.body.style.backgroundColor = "#2583f7"; // 将背景颜色设置为白色
-          titletext1.style.color = "#000000"
-          ptext1.style.color = "#000000"
-          titletext2.style.color = "#000000"
-          ptext2.style.color = "#000000"
+          titletext1.style.color = "#000000";
+          ptext1.style.color = "#000000";
+          titletext2.style.color = "#000000";
+          ptext2.style.color = "#000000";
           button.style.backgroundColor = "#101072";
+          linkbutton1.style.backgroundColor = "#101072";
+          linkbutton2.style.backgroundColor = "#101072";
+          linkbutton3.style.backgroundColor = "#101072";
+          head_picture.src = "https://images-ext-1.discordapp.net/external/dOk9nmDY_B-kOtrGIuXrW3oPwrmclBq3mtzhnTnjLm8/%3Fsize%3D1024/https/cdn.discordapp.com/avatars/1144161789832069141/58adc21a3d0bb7ed81d13b3463849136.png?format=webp&quality=lossless&width=577&height=577";
         };
       }
 
@@ -178,10 +191,27 @@
   </style>
 
   
-  <button style="width: 150px; height: 50px; background-color: rgb(14, 110, 255); border: none; border-radius: 5px;" onclick="window.location.href = 'https://discord.com/api/oauth2/authorize?client_id=1144161789832069141&permissions=39860474866806&scope=bot'" ><b>邀請至伺服器<br/>(小喵喵)</b></button>
-  <button style="width: 150px; height: 50px; background-color: rgb(14, 110, 255); border: none; border-radius: 5px;" onclick="window.location.href = 'https://discord.com/api/oauth2/authorize?client_id=1167443358336167966&permissions=39860474866806&scope=bot'"><b>邀請至伺服器<br/>(代理)</b></button><br/>
-  <button style="width: 150px; height: 50px; background-color: rgb(14, 110, 255); border: none; border-radius: 5px;" onclick="window.open('https://discord.gg/2hMVBxuBrQ')"><b>加入伺服器</b></button><br/>
-  <iframe src="https://discord.com/widget?id=1061475265924038758&theme=dark" width="400" height="450" allowtransparency="true" frameborder="0" sandbox="allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts" style="position: absolute; left: 8px;"></iframe>
-  <script src="https://discord.com/oauth2/authorize?client_id=1144161789832069141&response_type=code&redirect_uri=https://catchen541.github.io/little_cat/&scope=guilds+identify"></script>
+  <button id='linkbutton1' style="width: 150px; height: 50px; background-color: rgb(14, 110, 255); color: white; border: none; border-radius: 5px;" onclick="window.location.href = 'https://discord.com/api/oauth2/authorize?client_id=1144161789832069141&permissions=39860474866806&scope=bot'" ><b>邀請至伺服器<br/>(小喵喵)</b></button>
+  <button id='linkbutton2' style="width: 150px; height: 50px; background-color: rgb(14, 110, 255); color: white; border: none; border-radius: 5px;" onclick="window.location.href = 'https://discord.com/api/oauth2/authorize?client_id=1167443358336167966&permissions=39860474866806&scope=bot'"><b>邀請至伺服器<br/>(代理)</b></button><br/>
+  <button id='linkbutton3' style="width: 150px; height: 50px; background-color: rgb(14, 110, 255); color: white; border: none; border-radius: 5px;" onclick="window.open('https://discord.gg/2hMVBxuBrQ')"><b>加入伺服器</b></button><br/>
+  <iframe src="https://discord.com/widget?id=1061475265924038758&theme=dark" width="400" height="450" allowtransparency="true" frameborder="0" sandbox="allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts" style="position: absolute; left: 8px;"></iframe><br/>
+  <!-- <script src="https://discord.com/oauth2/authorize?client_id=1144161789832069141&response_type=code&redirect_uri=https://catchen541.github.io/little_cat/&scope=guilds+identify"></script> -->
+
+  
+
+  <script>
+    // 检查是否存在访问计数的cookie或localStorage，如果不存在则创建一个
+    if (!localStorage.getItem("visitCount")) {
+        localStorage.setItem("visitCount", "0");
+    }
+
+    // 获取并显示当前的访问次数
+    var visitCount = localStorage.getItem("visitCount");
+
+    // 每次加载页面时将访问次数加1，并更新显示
+    visitCount++;
+    console.log("造訪次數:", visitCount);
+  </script>
+
 
 </html>
