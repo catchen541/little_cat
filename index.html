@@ -1,217 +1,286 @@
-
-
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="utf-8">
-    <title>小喵喵官網</title>
-  </head>
-  <body>
-    <style type="text/css">
-      body {
-        background-color: #101072;
-      }
-      h1 {
-        color: white;
-        text-align: left;
-      }
-      p {
-        color: white;
-        text-align: left;
-      }
-      a {
-        color: white;
-        text-align: right;
-      }
 
+<head>
+  <meta charset="utf-8">
+  <title>小喵喵官網</title>
+</head>
 
-
-      #scrollButton {
-            display: none;
-            position: fixed;
-            bottom: 60px;
-            right: 20px;
-            background-color: rgb(146, 140, 140);
-            color: black;
-            padding: 10px 20px;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-      }
-
-      #lightButton {
-            position: fixed;
-            bottom: 10px;
-            right: 20px;
-            background-color: #2583f7;
-            color: black;
-            padding: 10px 15px;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-      }
-
-
-
-      
-    </style>
-    <button id="scrollButton" onclick="scrollToTop()">⬆</button>
-    <button id="lightButton" onclick="lightchange()">🔅</button>
-
-    <img id='head_pc' src="https://images-ext-1.discordapp.net/external/2EJ0PrzC7RKE0BDvFtdFeYpLa4qoK0n8wQOzfrUhh0U/%3Fsize%3D1024/https/cdn.discordapp.com/avatars/1167443358336167966/946efd4a4377a30885ba54ceeb9a0320.png?format=webp&quality=lossless&width=577&height=577" style="width: 58px; height: 58px; position: absolute; top: 0px; right: 2px;">
-    <!-- onclick="window.location.href='https://discord.com/oauth2/authorize?client_id=1144161789832069141&response_type=code&redirect_uri=https://catchen541.github.io/little_cat/&scope=guilds+identify'" -->
-    <button id='sign' style="position:absolute; top: 55px; right: 3px; width: 56px; height: 27px;"  onclick="login()">登入</button>
-
-    <script>
-      function login() {
-          var button = document.getElementById('sign');
-          button.innerText = '開發中';
-          button.disabled = true;
-
-          setTimeout(function() {
-              button.disabled = false;
-              button.innerText = '登入';
-          }, 1500);
-          
-      }
-
-      function lightchange() {
-        var button = document.getElementById('lightButton');
-        var body = document.body
-        var buttontext = button.innerText;
-        var titletext1 = document.getElementById('title1');
-        var ptext1 = document.getElementById('p-text1');
-        var titletext2 = document.getElementById('title2');
-        var ptext2 = document.getElementById('p-text2');
-        var linkbutton1 = document.getElementById('linkbutton1');
-        var linkbutton2 = document.getElementById('linkbutton2');
-        var linkbutton3 = document.getElementById('linkbutton3');
-        var head_picture = document.getElementById('head_pc');
-        if (buttontext == '💫') {
-          button.innerText = '🔅';
-          document.body.style.backgroundColor = "#101072";
-          titletext1.style.color = "#ffffff";
-          ptext1.style.color = "#ffffff";
-          titletext2.style.color = "#ffffff";
-          ptext2.style.color = "#ffffff";
-          button.style.backgroundColor = "#2583f7";
-          linkbutton1.style.backgroundColor = "rgb(14, 110, 255)";
-          linkbutton2.style.backgroundColor = "rgb(14, 110, 255)";
-          linkbutton3.style.backgroundColor = "rgb(14, 110, 255)";
-          head_picture.src = "https://images-ext-1.discordapp.net/external/2EJ0PrzC7RKE0BDvFtdFeYpLa4qoK0n8wQOzfrUhh0U/%3Fsize%3D1024/https/cdn.discordapp.com/avatars/1167443358336167966/946efd4a4377a30885ba54ceeb9a0320.png?format=webp&quality=lossless&width=577&height=577";
-        };
-        if (buttontext == '🔅') {
-          button.innerText = '💫';
-          document.body.style.backgroundColor = "#2583f7"; // 将背景颜色设置为白色
-          titletext1.style.color = "#000000";
-          ptext1.style.color = "#000000";
-          titletext2.style.color = "#000000";
-          ptext2.style.color = "#000000";
-          button.style.backgroundColor = "#101072";
-          linkbutton1.style.backgroundColor = "#101072";
-          linkbutton2.style.backgroundColor = "#101072";
-          linkbutton3.style.backgroundColor = "#101072";
-          head_picture.src = "https://images-ext-1.discordapp.net/external/dOk9nmDY_B-kOtrGIuXrW3oPwrmclBq3mtzhnTnjLm8/%3Fsize%3D1024/https/cdn.discordapp.com/avatars/1144161789832069141/58adc21a3d0bb7ed81d13b3463849136.png?format=webp&quality=lossless&width=577&height=577";
-        };
-      }
-
-      // 當頁面滾動時檢查是否顯示按鈕
-      window.onscroll = function() {scrollFunction()};
-
-      function scrollFunction() {
-          var scrollButton = document.getElementById("scrollButton");
-          if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
-              scrollButton.style.display = "block";
-              scrollButton.style.opacity = "1";
-          } else {
-              scrollButton.style.opacity = "0";
-              setTimeout(function() {
-                  scrollButton.style.display = "none";
-              }, 0); // 等待動畫結束後隱藏按鈕
-          }
-      }
-
-      // 滾動到頁面頂部函數
-      function scrollToTop() {
-          var currentScroll = document.documentElement.scrollTop || document.body.scrollTop;
-          if (currentScroll > 0) {
-              window.requestAnimationFrame(scrollToTop);
-              window.scrollTo(0, currentScroll - (currentScroll / 2)); // 調整 8 可以控制滾動速度
-          }
-      }
-
-    </script>
-
-
-    <h1 id="title1">服務條款</h1>
-    <p id="p-text1">如使用此Discord bot即表示您閱讀、了解並同意遵守了以下條款<br/>
-      請務必詳細閱讀，
-      若您不同意條款則請立即取消使用機器人且不要使用我們的服務<br/><br/>
-      
-      <u><b>使用許可</b></u><br/>
-      您需要同意不修改、複製、出售、轉讓、抄襲任何部分，除非有得到我們的同意證明(內含詳細說明)<br/><br/>
-      
-      <u><b>隱私保護</b></u><br/>
-      我們不會收集、儲存、分享或公開任何的使用者資訊的訊息(除受到法律授權)
-    </p>
-
-    <h1 id="title2">隱私條款</h1>
-    <p id="p-text2">因為避免有人使用(匿名)指令發送不當字詞與言論，我們會將資料紀錄置後台
-      但所有的資料將不對任何人透露、分享、檢視<br/>
-      必要時可要求開發者釋出，但是需要提出詳細且合理的原因、發送時間、內容、伺服器、證明您為此伺服器的管理員或擁有者</p>
-  </body>
-  <style>
-    a:link {
-        color:rgb(0, 200, 255);
+<body>
+  <style type="text/css">
+    body {
+      background-color: #101072;
     }
-    a:hover {
-        color: blue;
-    }
-    a:visited {
-      display: none;
-    }
-    a:active {
-      color: purple;
-    }
-    a {
-      text-align: center;
-    }
-    iframe {
+
+    h2 {
+      color: white;
       text-align: left;
     }
-    h5 {
+
+    p {
       color: white;
+      text-align: left;
     }
-    div {
+
+    a {
       color: white;
+      text-align: right;
     }
-    span {
-      color: greenyellow;
+
+
+
+    #scrollButton {
+      display: none;
+      position: fixed;
+      bottom: 60px;
+      right: 20px;
+      background-color: rgb(146, 140, 140);
+      color: black;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    #lightButton {
+      position: fixed;
+      bottom: 10px;
+      right: 20px;
+      background-color: #2583f7;
+      color: black;
+      padding: 10px 15px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    #titleprint {
+      color: yellow;
+      text-align: center;
     }
   </style>
+  <button id="scrollButton" onclick="scrollToTop()">⬆</button>
+  <button id="lightButton" onclick="lightchange()">🔅</button>
 
-  
-  <button id='linkbutton1' style="width: 150px; height: 50px; background-color: rgb(14, 110, 255); color: white; border: none; border-radius: 5px;" onclick="window.location.href = 'https://discord.com/api/oauth2/authorize?client_id=1144161789832069141&permissions=39860474866806&scope=bot'" ><b>邀請至伺服器<br/>(小喵喵)</b></button>
-  <button id='linkbutton2' style="width: 150px; height: 50px; background-color: rgb(14, 110, 255); color: white; border: none; border-radius: 5px;" onclick="window.location.href = 'https://discord.com/api/oauth2/authorize?client_id=1167443358336167966&permissions=39860474866806&scope=bot'"><b>邀請至伺服器<br/>(代理)</b></button><br/>
-  <button id='linkbutton3' style="width: 150px; height: 50px; background-color: rgb(14, 110, 255); color: white; border: none; border-radius: 5px;" onclick="window.open('https://discord.gg/2hMVBxuBrQ')"><b>加入伺服器</b></button><br/>
-  <iframe src="https://discord.com/widget?id=1061475265924038758&theme=dark" width="400" height="450" allowtransparency="true" frameborder="0" sandbox="allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts" style="position: absolute; left: 8px;"></iframe><br/>
-  <!-- <script src="https://discord.com/oauth2/authorize?client_id=1144161789832069141&response_type=code&redirect_uri=https://catchen541.github.io/little_cat/&scope=guilds+identify"></script> -->
+  <h1 id="firsttitle" style="color: aqua; text-align: center;">小喵喵</h1>
+  <p1 id="titleprint"></p1>
 
-  
+  <img id='head_pc' src="https://images-ext-1.discordapp.net/external/2EJ0PrzC7RKE0BDvFtdFeYpLa4qoK0n8wQOzfrUhh0U/%3Fsize%3D1024/https/cdn.discordapp.com/avatars/1167443358336167966/946efd4a4377a30885ba54ceeb9a0320.png?format=webp&quality=lossless&width=577&height=577" style="width: 58px; height: 58px; position: absolute; top: 0px; right: 2px;">
+  <!-- onclick="window.location.href='https://discord.com/oauth2/authorize?client_id=1144161789832069141&response_type=code&redirect_uri=https://catchen541.github.io/little_cat/&scope=guilds+identify'" -->
+  <button id='sign' style="position:absolute; top: 60px; right: 3px; width: 56px; height: 27px;"
+    onclick="login()">登入</button>
 
   <script>
-    // 检查是否存在访问计数的cookie或localStorage，如果不存在则创建一个
-    if (!localStorage.getItem("visitCount")) {
-        localStorage.setItem("visitCount", "0");
+
+        // JavaScript 代码用于实现打字效果
+      const textElement = document.getElementById('titleprint');
+      const textArray = ['小喵喵是一隻由command_cat所開發的Discord機器人', '它包含了許多有趣且實用的功能也含有等級與金錢系統', '以下為此機器人的使用和服務條約請務必詳細閱讀並遵守'];
+      let currentIndex = 0;
+      let currentText = '';
+      let letterIndex = 0;
+
+      function typeWriter() {
+            if (letterIndex < textArray[currentIndex].length) {
+                currentText += textArray[currentIndex].charAt(letterIndex);
+                textElement.textContent = currentText;
+                letterIndex++;
+                setTimeout(typeWriter, 100); // 控制文字出现的速度
+            } else {
+                setTimeout(eraseText, 1500); // 在文字全部出现后等待一段时间再消失
+            }
+      }
+
+      function eraseText() {
+            if (currentText.length > 0) {
+                currentText = currentText.slice(0, -1);
+                textElement.textContent = currentText;
+                setTimeout(eraseText, 60); // 控制文字消失的速度
+            } else {
+                currentIndex = (currentIndex + 1) % textArray.length;
+                letterIndex = 0;
+                setTimeout(typeWriter, 800); // 在文字全部消失后等待一段时间再出现下一段文字
+          }
+      }
+
+        // 开始打字效果
+      setTimeout(typeWriter, 1000);
+
+    
+
+
+    function login() {
+      var button = document.getElementById('sign');
+      button.innerText = '開發中';
+      button.disabled = true;
+
+      setTimeout(function () {
+        button.disabled = false;
+        button.innerText = '登入';
+      }, 1500);
+
     }
 
-    // 获取并显示当前的访问次数
-    var visitCount = localStorage.getItem("visitCount");
+    function lightchange() {
+      var button = document.getElementById('lightButton');
+      var body = document.body
+      var buttontext = button.innerText;
+      var titletext1 = document.getElementById('title1');
+      var ptext1 = document.getElementById('p-text1');
+      var titletext2 = document.getElementById('title2');
+      var ptext2 = document.getElementById('p-text2');
+      var linkbutton1 = document.getElementById('linkbutton1');
+      var linkbutton2 = document.getElementById('linkbutton2');
+      var linkbutton3 = document.getElementById('linkbutton3');
+      var head_picture = document.getElementById('head_pc');
+      var firsttitle = document.getElementById('firsttitle');
+      var titleprint = document.getElementById('titleprint');
+      if (buttontext == '💫') {
+        button.innerText = '🔅';
+        document.body.style.backgroundColor = "#101072";
+        titletext1.style.color = "#ffffff";
+        ptext1.style.color = "#ffffff";
+        titletext2.style.color = "#ffffff";
+        ptext2.style.color = "#ffffff";
+        button.style.backgroundColor = "#2583f7";
+        linkbutton1.style.backgroundColor = "rgb(14, 110, 255)";
+        linkbutton2.style.backgroundColor = "rgb(14, 110, 255)";
+        linkbutton3.style.backgroundColor = "rgb(14, 110, 255)";
+        firsttitle.style.color = "aqua";
+        titleprint.style.color = "yellow";
+        head_picture.src = "https://images-ext-1.discordapp.net/external/2EJ0PrzC7RKE0BDvFtdFeYpLa4qoK0n8wQOzfrUhh0U/%3Fsize%3D1024/https/cdn.discordapp.com/avatars/1167443358336167966/946efd4a4377a30885ba54ceeb9a0320.png?format=webp&quality=lossless&width=577&height=577";
+      };
+      if (buttontext == '🔅') {
+        button.innerText = '💫';
+        document.body.style.backgroundColor = "#2583f7"; // 将背景颜色设置为白色
+        titletext1.style.color = "#000000";
+        ptext1.style.color = "#000000";
+        titletext2.style.color = "#000000";
+        ptext2.style.color = "#000000";
+        button.style.backgroundColor = "#101072";
+        linkbutton1.style.backgroundColor = "#101072";
+        linkbutton2.style.backgroundColor = "#101072";
+        linkbutton3.style.backgroundColor = "#101072";
+        firsttitle.style.color = "darkblue";
+        titleprint.style.color = "red";
+        head_picture.src = "https://images-ext-1.discordapp.net/external/dOk9nmDY_B-kOtrGIuXrW3oPwrmclBq3mtzhnTnjLm8/%3Fsize%3D1024/https/cdn.discordapp.com/avatars/1144161789832069141/58adc21a3d0bb7ed81d13b3463849136.png?format=webp&quality=lossless&width=577&height=577";
+      };
+    }
 
-    // 每次加载页面时将访问次数加1，并更新显示
-    visitCount++;
-    console.log("造訪次數:", visitCount);
+    // 當頁面滾動時檢查是否顯示按鈕
+    window.onscroll = function () { scrollFunction() };
+
+    function scrollFunction() {
+      var scrollButton = document.getElementById("scrollButton");
+      if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+        scrollButton.style.display = "block";
+        scrollButton.style.opacity = "1";
+      } else {
+        scrollButton.style.opacity = "0";
+        setTimeout(function () {
+          scrollButton.style.display = "none";
+        }, 0); // 等待動畫結束後隱藏按鈕
+      }
+    }
+
+    // 滾動到頁面頂部函數
+    function scrollToTop() {
+      var currentScroll = document.documentElement.scrollTop || document.body.scrollTop;
+      if (currentScroll > 0) {
+        window.requestAnimationFrame(scrollToTop);
+        window.scrollTo(0, currentScroll - (currentScroll / 2)); // 調整 8 可以控制滾動速度
+      }
+    }
+
   </script>
+
+
+  <h2 id="title1">服務條款</h2>
+  <p id="p-text1">如使用此Discord bot即表示您閱讀、了解並同意遵守了以下條款<br />
+    請務必詳細閱讀，
+    若您不同意條款則請立即取消使用機器人且不要使用我們的服務<br /><br />
+
+    <u><b>使用許可</b></u><br />
+    您需要同意不修改、複製、出售、轉讓、抄襲任何部分，除非有得到我們的同意證明(內含詳細說明)<br /><br />
+
+    <u><b>隱私保護</b></u><br />
+    我們不會收集、儲存、分享或公開任何的使用者資訊的訊息(除受到法律授權)
+  </p>
+
+  <h2 id="title2">隱私條款</h2>
+  <p id="p-text2">因為避免有人使用(匿名)指令發送不當字詞與言論，我們會將資料紀錄置後台
+    但所有的資料將不對任何人透露、分享、檢視<br />
+    必要時可要求開發者釋出，但是需要提出詳細且合理的原因、發送時間、內容、伺服器、證明您為此伺服器的管理員或擁有者</p>
+</body>
+<style>
+  a:link {
+    color: rgb(0, 200, 255);
+  }
+
+  a:hover {
+    color: blue;
+  }
+
+  a:visited {
+    display: none;
+  }
+
+  a:active {
+    color: purple;
+  }
+
+  a {
+    text-align: center;
+  }
+
+  iframe {
+    text-align: left;
+  }
+
+  h5 {
+    color: white;
+  }
+
+  div {
+    color: white;
+  }
+
+  span {
+    color: greenyellow;
+  }
+</style>
+
+
+<button id='linkbutton1'
+  style="width: 150px; height: 50px; background-color: rgb(14, 110, 255); color: white; border: none; border-radius: 5px;"
+  onclick="window.location.href = 'https://discord.com/api/oauth2/authorize?client_id=1144161789832069141&permissions=39860474866806&scope=bot'"><b>邀請至伺服器<br />(小喵喵)</b></button>
+<button id='linkbutton2'
+  style="width: 150px; height: 50px; background-color: rgb(14, 110, 255); color: white; border: none; border-radius: 5px;"
+  onclick="window.location.href = 'https://discord.com/api/oauth2/authorize?client_id=1167443358336167966&permissions=39860474866806&scope=bot'"><b>邀請至伺服器<br />(代理)</b></button><br />
+<button id='linkbutton3'
+  style="width: 150px; height: 50px; background-color: rgb(14, 110, 255); color: white; border: none; border-radius: 5px;"
+  onclick="window.open('https://discord.gg/2hMVBxuBrQ')"><b>加入伺服器</b></button><br />
+<iframe src="https://discord.com/widget?id=1061475265924038758&theme=dark" width="400" height="450"
+  allowtransparency="true" frameborder="0"
+  sandbox="allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts"
+  style="position: absolute; left: 8px;"></iframe><br />
+<!-- <script src="https://discord.com/oauth2/authorize?client_id=1144161789832069141&response_type=code&redirect_uri=https://catchen541.github.io/little_cat/&scope=guilds+identify"></script> -->
+
+
+
+<script>
+  // 检查是否存在访问计数的cookie或localStorage，如果不存在则创建一个
+  if (!localStorage.getItem("visitCount")) {
+    localStorage.setItem("visitCount", "0");
+  }
+
+  // 获取并显示当前的访问次数
+  var visitCount = localStorage.getItem("visitCount");
+
+  // 每次加载页面时将访问次数加1，并更新显示
+  visitCount++;
+  console.log("造訪次數:", visitCount);
+</script>
+
+
 
 
 </html>
