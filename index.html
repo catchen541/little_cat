@@ -66,58 +66,58 @@
 
   <img id='head_pc' src="https://images-ext-1.discordapp.net/external/2EJ0PrzC7RKE0BDvFtdFeYpLa4qoK0n8wQOzfrUhh0U/%3Fsize%3D1024/https/cdn.discordapp.com/avatars/1167443358336167966/946efd4a4377a30885ba54ceeb9a0320.png?format=webp&quality=lossless&width=577&height=577" style="width: 58px; height: 58px; position: absolute; top: 0px; right: 2px;">
   <!-- onclick="window.location.href='https://discord.com/oauth2/authorize?client_id=1144161789832069141&response_type=code&redirect_uri=https://catchen541.github.io/little_cat/&scope=guilds+identify'" -->
-  <button id='sign' style="position:absolute; top: 60px; right: 3px; width: 56px; height: 27px;"
-    onclick="login()">登入</button>
-
+  <form action="https://discord.com/oauth2/authorize?client_id=1144161789832069141&response_type=code&redirect_uri=http%3A%2F%2Flocalhost%3A5000%2Fcallback&scope=guilds+identify">
+    <button id='sign' style="position:absolute; top: 60px; right: 3px; width: 56px; height: 27px;">登入</button>
+  </form>
   <script>
 
         // JavaScript 代码用于实现打字效果
-      const textElement = document.getElementById('titleprint');
-      const textArray = ['小喵喵是一隻由command_cat所開發的Discord機器人', '它包含了許多有趣且實用的功能也含有等級與金錢系統', '以下為此機器人的使用和服務條約請務必詳細閱讀並遵守'];
-      let currentIndex = 0;
-      let currentText = '';
-      let letterIndex = 0;
+      // const textElement = document.getElementById('titleprint');
+      // const textArray = ['小喵喵是一隻由command_cat所開發的Discord機器人', '它包含了許多有趣且實用的功能也含有等級與金錢系統', '以下為此機器人的使用和服務條約請務必詳細閱讀並遵守'];
+      // let currentIndex = 0;
+      // let currentText = '';
+      // let letterIndex = 0;
 
-      function typeWriter() {
-            if (letterIndex < textArray[currentIndex].length) {
-                currentText += textArray[currentIndex].charAt(letterIndex);
-                textElement.textContent = currentText;
-                letterIndex++;
-                setTimeout(typeWriter, 100); // 控制文字出现的速度
-            } else {
-                setTimeout(eraseText, 1500); // 在文字全部出现后等待一段时间再消失
-            }
-      }
+      // function typeWriter() {
+      //       if (letterIndex < textArray[currentIndex].length) {
+      //           currentText += textArray[currentIndex].charAt(letterIndex);
+      //           textElement.textContent = currentText;
+      //           letterIndex++;
+      //           setTimeout(typeWriter, 100); // 控制文字出现的速度
+      //       } else {
+      //           setTimeout(eraseText, 1500); // 在文字全部出现后等待一段时间再消失
+      //       }
+      // }
 
-      function eraseText() {
-            if (currentText.length > 0) {
-                currentText = currentText.slice(0, -1);
-                textElement.textContent = currentText;
-                setTimeout(eraseText, 60); // 控制文字消失的速度
-            } else {
-                currentIndex = (currentIndex + 1) % textArray.length;
-                letterIndex = 0;
-                setTimeout(typeWriter, 800); // 在文字全部消失后等待一段时间再出现下一段文字
-          }
-      }
+      // function eraseText() {
+      //       if (currentText.length > 0) {
+      //           currentText = currentText.slice(0, -1);
+      //           textElement.textContent = currentText;
+      //           setTimeout(eraseText, 60); // 控制文字消失的速度
+      //       } else {
+      //           currentIndex = (currentIndex + 1) % textArray.length;
+      //           letterIndex = 0;
+      //           setTimeout(typeWriter, 800); // 在文字全部消失后等待一段时间再出现下一段文字
+      //     }
+      // }
 
-        // 开始打字效果
-      setTimeout(typeWriter, 1000);
+      //   // 开始打字效果
+      // setTimeout(typeWriter, 1000);
 
     
 
 
-    function login() {
-      var button = document.getElementById('sign');
-      button.innerText = '開發中';
-      button.disabled = true;
+    // function login() {
+    //   var button = document.getElementById('sign');
+    //   button.innerText = '開發中';
+    //   button.disabled = true;
 
-      setTimeout(function () {
-        button.disabled = false;
-        button.innerText = '登入';
-      }, 1500);
+    //   setTimeout(function () {
+    //     button.disabled = false;
+    //     button.innerText = '登入';
+    //   }, 1500);
 
-    }
+    // }
 
     function lightchange() {
       var button = document.getElementById('lightButton');
