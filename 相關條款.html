@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="zh-tw">
+
+<head>
+    <meta charset="utf-8">
+    <title>小喵喵官網</title>
+    <style>
+        body {
+            background-color: #101072;
+            transition: background-color 0.5s ease;
+            font-family: Arial, sans-serif;
+        }
+
+        h1 {
+            color: aqua;
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        h2, p {
+            color: white;
+            text-align: left;
+        }
+
+        p {
+            padding: 15px;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            background-color: rgba(255, 255, 255, 0.1);
+            margin: 20px;
+        }
+
+        .container {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .button {
+            display: inline-block;
+            padding: 15px 30px;
+            font-size: 18px;
+            color: white;
+            background-color: #1900ff;
+            border: none;
+            border-radius: 15px;
+            text-align: center;
+            text-decoration: none;
+            cursor: pointer;
+            transition: background-color 0.5s ease;
+            margin: 10px;
+        }
+
+        .button:hover {
+            background-color: #0555ab;
+        }
+
+        #scrollButton {
+            position: fixed;
+            bottom: 15px;
+            right: 20px;
+            display: none;
+            background-color: #0555ab;
+            color: black;
+            padding: 10px;
+            border-radius: 10%;
+            border: none;
+            cursor: pointer;
+            font-size: 20px;
+        }
+
+        .iframe-container {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .sidebar-button {
+            display: block;
+            background-color: #1900ff;
+            color: white;
+            padding: 15px;
+            text-align: center;
+            text-decoration: none;
+            border-radius: 10px;
+            margin: 10px 0;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .sidebar-button:hover {
+            background-color: #0555ab;
+        }
+
+        .close-sidebar-button {
+            position: absolute;
+            top: 0px;
+            left: 0px;
+            display: block;
+            background-color: transparent;
+            color: rgb(57, 155, 252);
+            padding: 0px;
+            text-align: center;
+            text-decoration: none;
+            border: none;
+            cursor: pointer;
+            margin: 0;
+            font-size: 20px;
+        }
+
+        .sidebar {
+            width: 150px;
+            background-color: rgba(0, 0, 0, 0.8);
+            padding: 20px;
+            height: 100vh;
+            position: fixed;
+            right: 0;
+            top: 0;
+            transition: transform 0.3s ease;
+            transform: translateX(100%);
+        }
+
+        .sidebar.open {
+            transform: translateX(0);
+        }
+
+        .toggle-button {
+            position: fixed;
+            right: 10px;
+            top: 20px;
+            background-color: #0555ab;
+            color: white;
+            padding: 10px;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 40px;
+            width: 40px;
+            font-size: 25px;
+            text-align: center;
+        }
+
+        .toggle-button div {
+            font-size: 30px;
+        }
+    </style>
+</head>
+
+<body>
+    <h1 id="firsttitle">小喵喵</h1>
+    <button id="scrollButton" onclick="scrollToTop()">⬆</button>
+
+    <script>
+        function scrollFunction() {
+            var scrollButton = document.getElementById("scrollButton");
+            if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+                scrollButton.style.display = "block";
+            } else {
+                scrollButton.style.display = "none";
+            }
+        }
+        
+        function scrollToTop() {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+        
+        window.onscroll = scrollFunction;
+
+        function toggleSidebar() {
+            document.getElementById("sidebar").classList.toggle("open");
+        }
+
+        function closeSidebar() {
+            document.getElementById("sidebar").classList.remove("open");
+        }
+    </script>
+
+    <div class="container">
+        <h2>服務條款</h2>
+        <p>
+            如使用此Discord bot即表示您閱讀、了解並同意遵守以下條款。
+            若您不同意條款則請立即取消使用機器人且不要使用我們的服務。
+            <br /><br />
+            <b>使用許可</b><br />
+            您需同意不修改、複製、出售、轉讓、抄襲任何部分，除非得到我們的同意證明。
+            <br />
+            若有違反使用條約或Discord相關規定者查證屬實者，機器人將自動離開伺服器。
+            <br><br />
+            <b>隱私保護</b><br />
+            我們不會收集、儲存、分享或公開任何使用者資訊，除非受到法律授權。
+        </p>
+
+        <h2>隱私條款</h2>
+        <p>
+            為避免匿名指令發送不當言論，我們會將資料記錄置後台，但所有資料將不對任何人透露。
+            必要時可要求開發者釋出，但須提出合理的理由與相關證明。
+        </p>
+    </div>
+
+    <div class="container">
+        <button class="button" onclick="window.location.href='https://discord.com/oauth2/authorize?client_id=1144161789832069141'">
+            <b>開始使用小喵喵</b>
+        </button>
+        <button class="button" onclick="window.open('https://discord.gg/2hMVBxuBrQ')">
+            <b>加入支援伺服器</b>
+        </button>
+    </div>
+
+    <button class="toggle-button" onclick="toggleSidebar()">
+        <div>☰</div>
+    </button>
+
+    <div id="sidebar" class="sidebar">
+        <button class="close-sidebar-button" onclick="closeSidebar()">➡</button>
+        <a href="小喵喵主頁.html" class="sidebar-button">主頁</a>
+        <a href="相關條款.html" class="sidebar-button">相關條款</a>
+    </div>
+</body>
+
+</html>
