@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="zh-tw">
+
+<head>
+    <meta charset="utf-8">
+    <title>小喵喵官網</title>
+    <style>
+        body {
+            background-color: #101072;
+            transition: background-color 0.5s ease;
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: row;
+        }
+
+        h1 {
+            color: aqua;
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        h2, p {
+            color: white;
+            text-align: left;
+        }
+
+        p {
+            padding: 15px;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            background-color: rgba(255, 255, 255, 0.1);
+            margin: 20px;
+        }
+
+        .container {
+            text-align: center;
+            margin-top: 20px;
+            flex: 1;
+        }
+
+        .sidebar {
+            width: 150px;
+            background-color: rgba(0, 0, 0, 0.8);
+            padding: 20px;
+            height: 100vh;
+            position: fixed;
+            right: 0;
+            top: 0;
+            transition: transform 0.3s ease;
+            transform: translateX(100%);
+        }
+
+        .sidebar.open {
+            transform: translateX(0);
+        }
+
+        .toggle-button {
+            position: fixed;
+            right: 10px;
+            top: 20px;
+            background-color: #0555ab;
+            color: white;
+            padding: 10px;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 40px;
+            width: 40px;
+            font-size: 25px;
+            text-align: center;
+        }
+
+        .toggle-button div {
+            font-size: 30px;
+        }
+
+        .button {
+            display: inline-block;
+            padding: 15px 30px;
+            font-size: 18px;
+            color: white;
+            background-color: #1900ff;
+            border: none;
+            border-radius: 15px;
+            text-align: center;
+            text-decoration: none;
+            cursor: pointer;
+            transition: background-color 0.5s ease;
+            margin: 10px;
+        }
+
+        .button:hover {
+            background-color: #0555ab;
+        }
+
+        #scrollButton {
+            position: fixed;
+            bottom: 15px;
+            right: 20px;
+            display: none;
+            background-color: rgb(146, 140, 140);
+            color: black;
+            padding: 10px;
+            border-radius: 50%;
+            border: none;
+            cursor: pointer;
+            font-size: 20px;
+        }
+
+        .sidebar-button {
+            display: block;
+            background-color: #1900ff;
+            color: white;
+            padding: 15px;
+            text-align: center;
+            text-decoration: none;
+            border-radius: 10px;
+            margin: 10px 0;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .sidebar-button:hover {
+            background-color: #0555ab;
+        }
+
+        .close-sidebar-button {
+            position: absolute;
+            top: 0px;
+            left: 0px;
+            display: block;
+            background-color: transparent;
+            color: rgb(57, 155, 252);
+            padding: 0px;
+            text-align: center;
+            text-decoration: none;
+            border: none;
+            cursor: pointer;
+            margin: 0;
+            font-size: 20px;
+        }
+
+        /* .close-sidebar-button:hover {
+            background-color: rgba(5, 85, 171, 0.8);
+        } */
+
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1 id="firsttitle">小喵喵</h1>
+        <button id="scrollButton" onclick="scrollToTop()">⬆</button>
+        
+        <script>
+            function scrollFunction() {
+                var scrollButton = document.getElementById("scrollButton");
+                if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+                    scrollButton.style.display = "block";
+                } else {
+                    scrollButton.style.display = "none";
+                }
+            }
+            
+            function scrollToTop() {
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            }
+            
+            window.onscroll = scrollFunction;
+            
+            function toggleSidebar() {
+                document.getElementById("sidebar").classList.toggle("open");
+            }
+
+            function closeSidebar() {
+                document.getElementById("sidebar").classList.remove("open");
+            }
+        </script>
+        
+        <h2>關於小喵喵</h2>
+        <p>
+            小喵喵是一款強大的 Discord 機器人，專為提升伺服器互動體驗而設計。
+            它集成了多種功能，如音樂播放、管理工具、娛樂指令等，為用戶提供高效便利的服務。
+        </p>
+
+        <div class="container">
+            <h2>功能介紹</h2>
+            <p>
+                小喵喵是一款強大的 Discord 機器人，提供多種實用功能：<br><br>
+                <b>🎵 音樂播放</b><br/>
+                支援 SoundCloud 提供高品質音樂播放。<br><br>
+                <b>📌 伺服器管理</b><br/>
+                強大管理工具，讓伺服器管理變得更輕鬆。<br><br>
+                <b>📥 客自化的客服單</b><br>
+                直接使用指令即可設置自定義的客服單。<br><br>
+                <b>⚠ 嚴格的安全系統</b><br>
+                對新加入的成員鑑定帳號創建時間與名稱。
+
+            </p>
+        </div>
+
+        <button class="button" onclick="window.location.href='https://discord.com/api/oauth2/authorize?client_id=1144161789832069141&permissions=39860474866806&scope=bot'">
+            <b>開始使用小喵喵</b>
+        </button>
+        
+        <button class="button" onclick="window.open('https://discord.gg/2hMVBxuBrQ')">
+            <b>加入支援伺服器</b>
+        </button>
+    </div>
+    
+    <button class="toggle-button" onclick="toggleSidebar()">
+        <div>☰</div>
+    </button>
+
+    <div id="sidebar" class="sidebar">
+        <button class="close-sidebar-button" onclick="closeSidebar()">➡</button>
+        <a href="小喵喵主頁.html" class="sidebar-button">主頁</a>
+        <a href="相關條款.html" class="sidebar-button">相關條款</a>
+    </div>
+    
+    
+</body>
+
+</html>
