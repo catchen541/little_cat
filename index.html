@@ -1,247 +1,341 @@
 <!DOCTYPE html>
-<html lang="zh-tw">
-
+<html lang="zh-TW">
 <head>
-    <meta charset="utf-8">
-    <title>小喵喵官網</title>
-    <style>
-        body {
-            background-color: #101072;
-            transition: background-color 0.5s ease;
-            font-family: Arial, sans-serif;
-            display: flex;
-            flex-direction: row;
-        }
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>小喵喵Discord機器人</title>
 
-        h1 {
-            color: aqua;
-            text-align: center;
-            margin-top: 20px;
-        }
+  <!-- SEO -->
+  <meta name="description" content="小喵喵是一款強大的 Discord 機器人，支援音樂播放、管理功能、客服單與安全系統。" />
+  <meta name="keywords" content="小喵喵, Discord 機器人, Discord Bot, 音樂機器人" />
+  <meta property="og:title" content="小喵喵 Discord Bot" />
+  <meta property="og:description" content="音樂、管理、安全、跨群功能集一身的多功能機器人。" />
+  <meta property="og:type" content="website" />
 
-        h2, p {
-            color: white;
-            text-align: left;
-        }
+  <!-- 字體 -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet" />
 
-        p {
-            padding: 15px;
-            border: 1px solid #ccc;
-            border-radius: 10px;
-            background-color: rgba(255, 255, 255, 0.1);
-            margin: 20px;
-        }
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
 
-        .container {
-            text-align: center;
-            margin-top: 20px;
-            flex: 1;
-        }
+    html, body {
+      font-family: 'Poppins', sans-serif;
+      background: #111;
+      color: #fff;
+      overflow-x: hidden;
+      scroll-behavior: smooth;
+    }
 
-        .sidebar {
-            width: 150px;
-            background-color: rgba(0, 0, 0, 0.8);
-            padding: 20px;
-            height: 100vh;
-            position: fixed;
-            right: 0;
-            top: 0;
-            transition: transform 0.3s ease;
-            transform: translateX(100%);
-        }
+    a {
+      color: #66ffcc;
+      text-decoration: none;
+    }
 
-        .sidebar.open {
-            transform: translateX(0);
-        }
+    .container {
+      width: 90%;
+      max-width: 1200px;
+      margin: auto;
+      padding: 40px 0;
+    }
 
-        .toggle-button {
-            position: fixed;
-            right: 10px;
-            top: 20px;
-            background-color: #0555ab;
-            color: white;
-            padding: 10px;
-            border: none;
-            cursor: pointer;
-            border-radius: 5px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 40px;
-            width: 40px;
-            font-size: 25px;
-            text-align: center;
-        }
+    header {
+      background: #1c1c1c;
+      padding: 20px 0;
+      position: sticky;
+      top: 0;
+      z-index: 999;
+    }
 
-        .toggle-button div {
-            font-size: 30px;
-        }
+    .header-container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
 
-        .button {
-            display: inline-block;
-            padding: 15px 30px;
-            font-size: 18px;
-            color: white;
-            background-color: #1900ff;
-            border: none;
-            border-radius: 15px;
-            text-align: center;
-            text-decoration: none;
-            cursor: pointer;
-            transition: background-color 0.5s ease;
-            margin: 10px;
-        }
+    .logo {
+      font-size: 1.8rem;
+      font-weight: 600;
+      color: #66ffcc;
+    }
 
-        .button:hover {
-            background-color: #0555ab;
-        }
+    nav ul {
+      display: flex;
+      list-style: none;
+      gap: 20px;
+    }
 
-        #scrollButton {
-            position: fixed;
-            bottom: 15px;
-            right: 20px;
-            display: none;
-            background-color: rgb(146, 140, 140);
-            color: black;
-            padding: 10px;
-            border-radius: 50%;
-            border: none;
-            cursor: pointer;
-            font-size: 20px;
-        }
+    nav a {
+      font-weight: 500;
+    }
 
-        .sidebar-button {
-            display: block;
-            background-color: #1900ff;
-            color: white;
-            padding: 15px;
-            text-align: center;
-            text-decoration: none;
-            border-radius: 10px;
-            margin: 10px 0;
-            cursor: pointer;
-            transition: background-color 0.3s ease;
-        }
+    .hero {
+      text-align: center;
+      background: linear-gradient(to right, #222, #333);
+      padding: 100px 20px;
+      opacity: 0;
+      transform: translateY(20px);
+      animation: fadeInUp 1s forwards;
+    }
 
-        .sidebar-button:hover {
-            background-color: #0555ab;
-        }
+    .hero h1 {
+      font-size: 2.5rem;
+      margin-bottom: 20px;
+    }
 
-        .close-sidebar-button {
-            position: absolute;
-            top: 0px;
-            left: 0px;
-            display: block;
-            background-color: transparent;
-            color: rgb(57, 155, 252);
-            padding: 0px;
-            text-align: center;
-            text-decoration: none;
-            border: none;
-            cursor: pointer;
-            margin: 0;
-            font-size: 20px;
-        }
+    .hero p {
+      font-size: 1.2rem;
+      color: #ccc;
+      margin-bottom: 30px;
+    }
 
-        footer {
-            text-align: center;
-            margin-top: 40px;
-            font-size: 0.9em;
-            color: #cccccc;
-            animation: fadeIn 2s ease;
-            padding: 20px;
-            background-color: rgba(0, 0, 0, 0.5);
-            border-radius: 10px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
-        }
+    .btn-primary {
+      background: #66ffcc;
+      color: #000;
+      padding: 15px 30px;
+      border: none;
+      border-radius: 8px;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: transform 0.2s ease, background 0.3s;
+    }
 
-        footer p {
-            margin: 5px 0;
-        }
+    .btn-primary:hover {
+      transform: scale(1.05);
+      background: #55ddaa;
+    }
 
-        /* .close-sidebar-button:hover {
-            background-color: rgba(5, 85, 171, 0.8);
-        } */
+    section {
+      opacity: 0;
+      transform: translateY(40px);
+      transition: all 0.8s ease-out;
+    }
 
-    </style>
+    section.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .features .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 30px;
+    }
+
+    .card {
+      background: #1f1f1f;
+      border: 1px solid #333;
+      padding: 30px;
+      border-radius: 10px;
+      transition: transform 0.3s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-5px);
+    }
+
+    .cta {
+      background: #66ffcc;
+      color: #000;
+      text-align: center;
+      padding: 60px 20px;
+    }
+
+    .cta .btn-primary {
+      background: #000;
+      color: #66ffcc;
+    }
+
+    footer {
+      text-align: center;
+      padding: 20px;
+      font-size: 0.8rem;
+      background: #111;
+    }
+
+    /* Entry Animation */
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(40px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* Button click transition effect */
+    .fade-out-all {
+      animation: fadeOut 1s forwards;
+    }
+
+    @keyframes fadeOut {
+      to {
+        opacity: 0;
+        transform: scale(1.1);
+      }
+    }
+
+    .blue-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      height: 100%;
+      width: 100%;
+      background: #007BFF;
+      z-index: 1000;
+      animation: expandBlue 1s forwards;
+    }
+
+    @keyframes expandBlue {
+      from {
+        opacity: 0;
+      }
+      to {
+        opacity: 1;
+      }
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      nav ul {
+        flex-direction: column;
+        gap: 10px;
+      }
+
+      .hero h1 {
+        font-size: 2rem;
+      }
+    }
+  </style>
 </head>
-
 <body>
+
+  <header>
+    <div class="container header-container">
+      <div class="logo">
+        <img src="cat.png" alt="小喵喵 Logo" style="height: 40px; vertical-align: middle;">
+        <span style="margin-left: 8px; vertical-align: middle;">小喵喵</span>
+      </div>
+
+      <nav>
+        <ul>
+          <li><a href="#features">功能</a></li>
+          <li><a href="#about">關於</a></li>
+          <li><a href="#terms">條款</a></li>
+          <li><a href="#invite">邀請</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <section class="hero">
     <div class="container">
-        <h1 id="firsttitle">小喵喵</h1>
-        <button id="scrollButton" onclick="scrollToTop()">⬆</button>
-        
-        <script>
-            function scrollFunction() {
-                var scrollButton = document.getElementById("scrollButton");
-                if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
-                    scrollButton.style.display = "block";
-                } else {
-                    scrollButton.style.display = "none";
-                }
-            }
-            
-            function scrollToTop() {
-                window.scrollTo({ top: 0, behavior: 'smooth' });
-            }
-            
-            window.onscroll = scrollFunction;
-            
-            function toggleSidebar() {
-                document.getElementById("sidebar").classList.toggle("open");
-            }
-
-            function closeSidebar() {
-                document.getElementById("sidebar").classList.remove("open");
-            }
-        </script>
-        
-        <h2>關於小喵喵</h2>
-        <p>
-            小喵喵是一款強大的 Discord 機器人，專為提升伺服器互動體驗而設計。
-            它集成了多種功能，如音樂播放、管理工具、娛樂指令等，為用戶提供高效便利的服務。
-        </p>
-
-        <div class="container">
-            <h2>功能介紹</h2>
-            <p>
-                小喵喵是一款強大的 Discord 機器人，提供多種實用功能：<br><br>
-                <b>🎵 音樂播放</b><br/>
-                支援 SoundCloud 提供高品質音樂播放。<br><br>
-                <b>📌 伺服器管理</b><br/>
-                強大管理工具，讓伺服器管理變得更輕鬆。<br><br>
-                <b>📥 客自化的客服單</b><br>
-                直接使用指令即可設置自定義的客服單。<br><br>
-                <b>⚠ 嚴格的安全系統</b><br>
-                對新加入的成員鑑定帳號創建時間與名稱。
-
-            </p>
-        </div>
-
-        <button class="button" onclick="window.location.href='https://discord.com/api/oauth2/authorize?client_id=1144161789832069141&permissions=39860474866806&scope=bot'">
-            <b>開始使用小喵喵</b>
-        </button>
-        
-        <button class="button" onclick="window.open('https://discord.gg/2hMVBxuBrQ')">
-            <b>加入支援伺服器</b>
-        </button>
-        <footer>
-            版權所有 © 2025-command_cat。保留所有權利。
-        </footer>
+      <h1>提升你的 Discord 伺服器體驗</h1>
+      <p>支援音樂、管理、客服單、安全驗證等多功能</p>
+      <button class="btn-primary" id="inviteBtn">立即邀請小喵喵</button>
     </div>
-    
-    <button class="toggle-button" onclick="toggleSidebar()">
-        <div>☰</div>
-    </button>
+  </section>
 
-    <div id="sidebar" class="sidebar">
-        <button class="close-sidebar-button" onclick="closeSidebar()">➡</button>
-        <a href="index.html" class="sidebar-button">主頁</a>
-        <a href="terms.html" class="sidebar-button">相關條款</a>
+  <section id="features" class="features container">
+    <h2>🌟 主要功能</h2>
+    <div class="grid">
+      <div class="card">
+        <h3>🎵 音樂播放</h3>
+        <p>支援 YouTube/SoundCloud 高品質音樂與多種特效播放。</p>
+      </div>
+      <div class="card">
+        <h3>📌 管理工具</h3>
+        <p>封鎖、審核紀錄等一站式伺服器管理。</p>
+      </div>
+      <div class="card">
+        <h3>📥 客服單系統</h3>
+        <p>用戶可使用指令創建支援單，自定義分類。</p>
+      </div>
+      <div class="card">
+        <h3>⚠ 安全系統</h3>
+        <p>檢查新用戶帳號年齡、使用者名稱與黑名單並主動防禦。</p>
+      </div>
+      <div class="card">
+        <h3>💫 跨群系統</h3>
+        <p>與其他伺服器的頻道進行連結，附帶各種自定義訊息。</p>
+      </div>
     </div>
+  </section>
 
-    
-    
+  <section id="about" class="about container">
+    <h2>關於小喵喵</h2>
+    <p>
+      小喵喵是一款全方位 Discord 機器人，旨在提升社群互動體驗。擁有娛樂、管理、安全、客服等多種模組，並持續更新！
+    </p>
+  </section>
+
+  <section id="terms" class="container">
+    <h2>📜 服務條款</h2>
+    <p>
+      如使用此 Discord bot 即表示您閱讀、了解並同意遵守以下條款。
+      若您不同意條款則請立即取消使用機器人且不要使用我們的服務。
+      <br><br>
+      <b>使用許可</b><br>
+      您需同意不修改、複製、出售、轉讓、抄襲任何部分，除非得到我們的同意證明。
+      <br>
+      若有違反使用條約或 Discord 相關規定者查證屬實者，機器人將自動離開伺服器。
+      <br><br>
+      <b>隱私保護</b><br>
+      我們不會收集、儲存、分享或公開任何使用者資訊，除非受到法律授權。
+    </p>
+
+    <h2>🔒 隱私條款</h2>
+    <p>
+      為避免匿名指令發送不當言論，我們會將資料記錄置後台，但所有資料將不對任何人透露。
+      必要時可要求開發者釋出，但須提出合理的理由與相關證明。
+    </p>
+  </section>
+
+
+  <section id="invite" class="cta">
+    <h2>🚀 準備好迎接升級了嗎？</h2>
+    <button class="btn-primary" id="inviteBtnBottom">邀請小喵喵到伺服器</button>
+  </section>
+
+  <footer>
+    <p>© 2025 小喵喵 Discord Bot. All rights reserved.</p>
+  </footer>
+
+  <script>
+    // 滑入動畫 Intersection Observer
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    });
+
+    document.querySelectorAll('section').forEach(section => {
+      observer.observe(section);
+    });
+
+    // 點擊按鈕後畫面變藍 & 淡出
+    const buttons = document.querySelectorAll('#inviteBtn, #inviteBtnBottom');
+
+    buttons.forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.body.classList.add('fade-out-all');
+        const overlay = document.createElement('div');
+        overlay.className = 'blue-overlay';
+        document.body.appendChild(overlay);
+
+        // 模擬延遲跳轉
+        setTimeout(() => {
+          window.location.href = "https://discord.com/oauth2/authorize?client_id=1144161789832069141";
+        }, 1000);
+      });
+    });
+  </script>
 </body>
-
 </html>
