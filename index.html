@@ -12,7 +12,6 @@
   <meta property="og:description" content="音樂、管理、安全、跨群功能集一身的多功能機器人。" />
   <meta property="og:type" content="website" />
 
-  <!-- 字體 -->
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet" />
 
   <style>
@@ -228,6 +227,7 @@
           <li><a href="#about">關於</a></li>
           <li><a href="#terms">條款</a></li>
           <li><a href="#invite">邀請</a></li>
+          <li><a href="developer.html">RPG開發文檔</a></li>
         </ul>
       </nav>
     </div>
@@ -262,7 +262,7 @@
       </div>
       <div class="card">
         <h3>🎮 RPG多人遊戲</h3>
-        <p>可與其他玩家共同遊玩的文字RPG，也可自行開發模組遊玩</p>
+        <p>可與其他玩家共同遊玩的文字RPG，也可自行開發模組遊玩。<br/><a href="developer.html">開發文檔</a></p>
       </div>
       <div class="card">
         <h3>💫 跨群系統</h3>
@@ -311,7 +311,6 @@
   </footer>
 
   <script>
-    // 滑入動畫 Intersection Observer
     const observer = new IntersectionObserver(entries => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
@@ -324,7 +323,6 @@
       observer.observe(section);
     });
 
-    // 點擊按鈕後畫面變藍 & 淡出
     const buttons = document.querySelectorAll('#inviteBtn, #inviteBtnBottom');
 
     buttons.forEach(btn => {
@@ -334,7 +332,6 @@
         overlay.className = 'blue-overlay';
         document.body.appendChild(overlay);
 
-        // 模擬延遲跳轉
         setTimeout(() => {
           window.location.href = "https://discord.com/oauth2/authorize?client_id=1144161789832069141";
         }, 1000);
