@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>小喵喵RPG模組文檔</title>
+
+  <!-- SEO -->
+  <meta name="description" content="小喵喵是一款強大的 Discord 機器人，支援音樂播放、管理功能、客服單與安全系統。" />
+  <meta name="keywords" content="小喵喵, Discord 機器人, Discord Bot, 音樂機器人" />
+  <meta property="og:title" content="小喵喵RPG模組文檔" />
+  <meta property="og:description" content="小喵喵RPG開發者教學文檔" />
+  <meta property="og:type" content="website" />
+
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet" />
+
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html, body { font-family: 'Poppins', sans-serif; background: #111; color: #fff; overflow-x: hidden; scroll-behavior: smooth; }
+    a { color: #66ffcc; text-decoration: none; }
+    .container { width: 90%; max-width: 1200px; margin: auto; padding: 40px 0; }
+
+    header { background: #1c1c1c; padding: 20px 0; position: sticky; top: 0; z-index: 999; }
+    .header-container { display: flex; justify-content: space-between; align-items: center; }
+    .logo { font-size: 1.8rem; font-weight: 600; color: #66ffcc; }
+    nav ul { display: flex; list-style: none; gap: 20px; }
+    nav a { font-weight: 500; }
+
+    section { opacity: 0; transform: translateY(40px); transition: all 0.8s ease-out; padding-bottom: 60px; }
+    section.visible { opacity: 1; transform: translateY(0); }
+
+    h1, h2, h3, h4 { color: #fff; margin-bottom: 20px; }
+    p { margin-bottom: 20px; color: #ccc; }
+
+    .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(600px, 1fr)); gap: 10px; }
+
+
+    .card { background: #1f1f1f; border: 1px solid #333; padding: 18px; border-radius: 10px; transition: transform 0.3s ease; }
+    .card:hover { transform: translateY(-5px); }
+
+    pre { background: #272822; color: #f8f8f2; padding: 10px; overflow-x: auto; border-radius: 8px; margin-bottom: 20px; }
+    code { font-family: Consolas, monospace; }
+    .code-block {position: relative; margin-bottom: 20px; }
+
+    .copy-btn {position: absolute; top: 8px; right: 8px; background: #66ffcc; border: none; border-radius: 6px; padding: 5px 10px; cursor: pointer; font-size: 0.9rem; transition: 0.2s; }
+
+    .copy-btn:hover {background: #55ddaa; }
+
+
+    table { border-collapse: collapse; width: 100%; margin-bottom: 20px; }
+    th, td { border: 1px solid #333; padding: 8px; text-align: left; }
+    th { background-color: #222; }
+
+    .btn-primary { background: #66ffcc; color: #000; padding: 12px 25px; border: none; border-radius: 8px; font-size: 1rem; cursor: pointer; transition: transform 0.2s ease, background 0.3s; }
+    .btn-primary:hover { transform: scale(1.05); background: #55ddaa; }
+
+    .cta { background: #66ffcc; color: #000; text-align: center; padding: 60px 20px; }
+    .cta .btn-primary { background: #000; color: #66ffcc; }
+
+    footer { text-align: center; padding: 20px; font-size: 0.8rem; background: #111; }
+
+    @keyframes fadeInUp { from { opacity: 0; transform: translateY(40px); } to { opacity: 1; transform: translateY(0); } }
+
+    @media (max-width: 768px) { nav ul { flex-direction: column; gap: 10px; } h1 { font-size: 2rem; } }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="container header-container">
+    <div class="logo">
+        <img src="cat.png" alt="小喵喵 Logo" style="height: 40px; vertical-align: middle;">
+        <span style="margin-left: 8px; vertical-align: middle;">小喵喵RPG模組文檔</span>
+    </div>
+    <nav>
+      <ul>
+        <li><a href="#required">必填欄位</a></li>
+        <li><a href="#optional">生物物品註冊</a></li>
+        <li><a href="#example">完整範例</a></li>
+        <li><a href="#rules">驗證規則</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<section class="hero container">
+  <h1>小喵喵RPG模組文檔</h1>
+  <p>本頁面說明小喵喵RPG模組JSON結構、必填與可選欄位，以及生物/方塊生成規則。</p>
+</section>
+
+<section id="required" class="container">
+  <h2>必填欄位(type)</h2>
+  <div class="code-block">
+    <button class="copy-btn">複製</button>
+    <pre><code>{
+    "info": {
+        "author": "Example",
+        "modename": "example",
+        "modeversion": "1.0"
+    },
+    "data": {
+        "animal": {},
+        "block": {},
+        "item": {}
+    },
+    "rule":{
+        "animal": {},
+        "block": {}
+    },
+    "type": []
+}   </code></pre>
+  </div>
+  <table>
+    <tr><th>欄位</th><th>型態</th><th>說明</th></tr>
+    <tr><td>info.author</td><td>str</td><td>模組作者名稱</td></tr>
+    <tr><td>info.modename</td><td>str</td><td>模組名稱</td></tr>
+    <tr><td>info.modeversion</td><td>str</td><td>模組版本號</td></tr>
+    <tr><td>data.animal</td><td>dict</td><td>生物資料字典</td></tr>
+    <tr><td>data.block</td><td>dict</td><td>方塊資料字典</td></tr>
+    <tr><td>data.item</td><td>dict</td><td>道具資料字典</td></tr>
+    <tr><td>rule.animal</td><td>dict</td><td>生物生成規則字典</td></tr>
+    <tr><td>rule.block</td><td>dict</td><td>方塊生成規則字典</td></tr>
+    <tr><td>type</td><td>list</td><td>模組類型字串列表(預設值default)</td></tr>
+  </table>
+</section>
+
+<section id="optional" class="container">
+  <h2>生物物品註冊</h2>
+  <div class="grid">
+    <div class="card code-block">
+      <h3>data.animal - 額外生物</h3>
+      <button class="copy-btn">複製</button>
+      <pre><code>
+"&lt;生物名稱&gt;": {
+  "hp": 10,
+  "drops": ["&lt;掉落物&gt;"],
+  "display-emoji": "&lt;emoji&gt;"
+}
+      </code></pre>
+    </div>
+    <div class="card code-block">
+      <h3>data.block - 額外方塊</h3>
+      <button class="copy-btn">複製</button>
+      <pre><code>
+"&lt;方塊名稱&gt;": {
+  "drops": ["&lt;掉落物&gt;"],
+  "display-emoji": "&lt;emoji&gt;"
+}
+      </code></pre>
+    </div>
+    <div class="card code-block">
+      <h3>data.item - 額外物品</h3>
+      <button class="copy-btn">複製</button>
+      <pre><code>"&lt;物品名稱&gt;": {}</code></pre>
+    </div>
+  </div>
+  <table>
+    <tr><th>欄位</th><th>型態</th><th>說明</th></tr>
+    <tr><td>&lt;生物名稱&gt;.hp</td><td>int</td><td>生物血量</td></tr>
+    <tr><td>&lt;生物名稱&gt;.drops</td><td>list</td><td>掉落物</td></tr>
+    <tr><td>&lt;生物名稱&gt;.display-emoji</td><td>str</td><td>顯示的表情符號</td></tr>
+    <tr><td>&lt;方塊名稱&gt;.drops</td><td>list</td><td>掉落物</td></tr>
+    <tr><td>&lt;方塊名稱&gt;.display-emoji</td><td>str</td><td>顯示的表情符號</td></tr>
+    <tr><td>&lt;物品名稱&gt;</td><td>dict</td><td>尚無屬性</td></tr>
+  </table>
+</section>
+
+<section id="gen-rule" class="container">
+  <h2>生物方塊生成規則</h2>
+  <div class="grid">
+    <div class="card code-block">
+      <h3>rule.animal</h3>
+      <button class="copy-btn">複製</button>
+      <pre><code>
+"&lt;生物名稱&gt;": {
+    "chunck": {
+        "max":&lt;區塊最多生成數量&gt;,
+        "min":&lt;區塊最少生成數量&gt;
+    },
+    "world": {
+        "max":&lt;世界最多生成數量&gt;,
+        "min":&lt;世界最少生成數量&gt;
+    },
+  "type": ["&lt;type&gt;"]
+}
+      </code></pre>
+    </div>
+    <div class="card code-block">
+      <h3>rule.block</h3>
+      <button class="copy-btn">複製</button>
+      <pre><code>
+"&lt;方塊名稱&gt;": {
+    "chunck": {
+        "max":&lt;區塊最多生成數量&gt;,
+        "min":&lt;區塊最少生成數量&gt;
+    },
+    "world": {
+        "max":&lt;世界最多生成數量&gt;,
+        "min":&lt;世界最少生成數量&gt;
+    },
+    "type": ["&lt;type&gt;"]
+}
+      </code></pre>
+    </div>
+  </div>
+  <table>
+    <tr><th>欄位</th><th>型態</th><th>說明</th></tr>
+    <tr><td>&lt;生物名稱&gt;.chunck</td><td>dict</td><td>區塊生成規則</td></tr>
+    <tr><td>&lt;生物名稱&gt;.chunck.max</td><td>int</td><td>區塊最多生成數量</td></tr>
+    <tr><td>&lt;生物名稱&gt;.chunck.min</td><td>int</td><td>區塊最少生成數量</td></tr>
+    <tr><td>&lt;生物名稱&gt;.world</td><td>dict</td><td>世界生成規則</td></tr>
+    <tr><td>&lt;生物名稱&gt;.world.max</td><td>int</td><td>世界最多生成數量</td></tr>
+    <tr><td>&lt;生物名稱&gt;.world.min</td><td>int</td><td>世界最少生成數量</td></tr>
+    <tr><td>&lt;生物名稱&gt;.type</td><td>list</td><td>生物類別</td></tr>
+    <tr><td>&lt;方塊名稱&gt;.chunck</td><td>dict</td><td>區塊生成規則</td></tr>
+    <tr><td>&lt;方塊名稱&gt;.chunck.max</td><td>int</td><td>區塊最多生成數量</td></tr>
+    <tr><td>&lt;方塊名稱&gt;.chunck.min</td><td>int</td><td>區塊最少生成數量</td></tr>
+    <tr><td>&lt;方塊名稱&gt;.world</td><td>dict</td><td>世界生成規則</td></tr>
+    <tr><td>&lt;方塊名稱&gt;.world.max</td><td>int</td><td>世界最多生成數量</td></tr>
+    <tr><td>&lt;方塊名稱&gt;.world.min</td><td>int</td><td>世界最少生成數量</td></tr>
+    <tr><td>&lt;方塊名稱&gt;.type</td><td>list</td><td>方塊類別</td></tr>
+  </table>
+</section>
+
+<section id="rules" class="container">
+  <h2>驗證規則</h2>
+  <ul>
+    <li>必填欄位必須存在，型態符合<a href="#required">必填欄位</a></li>
+    <li>可選欄位若存在，型態必須符合<a href="#optional">生物物品註冊</a></li>
+    <li>data 中的生物、方塊必須對應 rule 中的<a href="#gen-rule">生成規則</a></li>
+    <li>rule 中的生物、方塊必須在 data 中有資料。</li>
+    <li>若缺少 hp、drops、display-emoji 等關鍵欄位就會報錯。</li>
+  </ul>
+</section>
+
+<section id="example" class="container">
+  <h2>完整範例</h2>
+  <div class="code-block">
+    <button class="copy-btn">複製</button>
+    <pre><code>{
+    "info": {
+        "author": "command_cat",
+        "modename": "example",
+        "modeversion": "v1.2"
+    },
+    "data": {
+        "animal": {
+            "cat": {
+                "hp":10,
+                "drops":["bone"],
+                "display-emoji":"🐱"
+            }
+        },
+        "block": {
+            "stone": {
+                "drops":["stone"],
+                "display-emoji":"🟫"
+            }
+        },
+        "item": {
+            "bone": {}
+        },
+        "map": [] // 可暫時忽略為空
+    },
+    "rule": {
+        "animal": {
+            "cat": {
+                "chunck":{
+                    "max":3,
+                    "min":1
+                },
+                "world":{
+                    "max":100,
+                    "min":50
+                },
+                "type":["default", "normal"] // 可暫時忽略為空
+            }
+        },
+        "block": {
+            "stone": {
+                "chunck":{
+                    "max":5,
+                    "min":3
+                },
+                "world":{
+                    "max":200,
+                    "min":100
+                },
+                "type":["default"] // 可暫時忽略為空
+            }
+        }
+    },
+    "type": ["normal"]
+}</code></pre>
+  </div>
+</section>
+
+
+<section class="cta">
+  <h2>🚀 開始創建你的RPG模組吧！</h2>
+  <button class="btn-primary">立即下載範例JSON</button>
+</section>
+
+<footer>
+  <p>© 2025 小喵喵 Discord Bot. All rights reserved.</p>
+</footer>
+
+<script>
+    const observer = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+        if(entry.isIntersecting) entry.target.classList.add('visible');
+        });
+    });
+    document.querySelectorAll('section').forEach(section => observer.observe(section));
+    document.querySelectorAll('.copy-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+        const code = btn.nextElementSibling.innerText; // 取得 <pre><code> 的內容
+        navigator.clipboard.writeText(code).then(() => {
+        btn.innerText = '已複製';
+        setTimeout(() => btn.innerText = '複製', 1500);
+        }).catch(err => {
+        console.error('複製失敗', err);
+        });
+    });
+    });
+
+</script>
+
+</body>
+</html>
