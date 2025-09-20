@@ -32,7 +32,7 @@
     h1, h2, h3, h4 { color: #fff; margin-bottom: 20px; }
     p { margin-bottom: 20px; color: #ccc; }
 
-    .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(600px, 1fr)); gap: 10px; }
+    .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 10px; }
 
 
     .card { background: #1f1f1f; border: 1px solid #333; padding: 18px; border-radius: 10px; transition: transform 0.3s ease; }
@@ -55,6 +55,7 @@
     .btn-primary:hover { transform: scale(1.05); background: #55ddaa; }
 
     .cta { background: #66ffcc; color: #000; text-align: center; padding: 60px 20px; }
+    .cta h2 { color: #000; }
     .cta .btn-primary { background: #000; color: #66ffcc; }
 
     footer { text-align: center; padding: 20px; font-size: 0.8rem; background: #111; }
@@ -84,7 +85,7 @@
 </header>
 
 <section class="hero container">
-  <h1>小喵喵RPG模組文檔</h1>
+  <!-- <h1>小喵喵RPG模組文檔</h1> -->
   <p>本頁面說明小喵喵RPG模組JSON結構、必填與可選欄位，以及生物/方塊生成規則。</p>
 </section>
 
@@ -96,7 +97,8 @@
     "info": {
         "author": "Example",
         "modename": "example",
-        "modeversion": "1.0"
+        "modeversion": "1.0",
+        "dev-version": 1
     },
     "data": {
         "animal": {},
@@ -112,15 +114,16 @@
   </div>
   <table>
     <tr><th>欄位</th><th>型態</th><th>說明</th></tr>
-    <tr><td>info.author</td><td>str</td><td>模組作者名稱</td></tr>
+    <tr><td>info.author</td><td>str</td><td>作者名稱</td></tr>
     <tr><td>info.modename</td><td>str</td><td>模組名稱</td></tr>
-    <tr><td>info.modeversion</td><td>str</td><td>模組版本號</td></tr>
-    <tr><td>data.animal</td><td>dict</td><td>生物資料字典</td></tr>
-    <tr><td>data.block</td><td>dict</td><td>方塊資料字典</td></tr>
-    <tr><td>data.item</td><td>dict</td><td>道具資料字典</td></tr>
-    <tr><td>rule.animal</td><td>dict</td><td>生物生成規則字典</td></tr>
-    <tr><td>rule.block</td><td>dict</td><td>方塊生成規則字典</td></tr>
-    <tr><td>type</td><td>list</td><td>模組類型字串列表(預設值default)</td></tr>
+    <tr><td>info.modeversion</td><td>str</td><td>模組版本</td></tr>
+    <tr><td>info.dev-version</td><td>int</td><td>模組開發使用</td></tr>
+    <tr><td>data.animal</td><td>dict</td><td>生物資料</td></tr>
+    <tr><td>data.block</td><td>dict</td><td>方塊資料</td></tr>
+    <tr><td>data.item</td><td>dict</td><td>物品資料</td></tr>
+    <tr><td>rule.animal</td><td>dict</td><td>生物生成規則</td></tr>
+    <tr><td>rule.block</td><td>dict</td><td>方塊生成規則</td></tr>
+    <tr><td>type</td><td>list</td><td>類型註冊列表(預設內含default、food)</td></tr>
   </table>
 </section>
 
@@ -151,7 +154,17 @@
     <div class="card code-block">
       <h3>data.item - 額外物品</h3>
       <button class="copy-btn">複製</button>
-      <pre><code>"&lt;物品名稱&gt;": {}</code></pre>
+      <pre><code>"&lt;物品名稱&gt;": {
+  "type": ["&lt;type&gt;"],
+    "gen": {
+      "health": &lt;回復血量&gt;,
+      "cooked": &lt;是否烹煮&gt;,
+    },
+    "trade": {
+      "sold": &lt;賣出價格&gt;,
+      "buy": &lt;買入價格&gt;
+    }
+}</code></pre>
     </div>
   </div>
   <table>
@@ -161,7 +174,13 @@
     <tr><td>&lt;生物名稱&gt;.display-emoji</td><td>str</td><td>顯示的表情符號</td></tr>
     <tr><td>&lt;方塊名稱&gt;.drops</td><td>list</td><td>掉落物</td></tr>
     <tr><td>&lt;方塊名稱&gt;.display-emoji</td><td>str</td><td>顯示的表情符號</td></tr>
-    <tr><td>&lt;物品名稱&gt;</td><td>dict</td><td>尚無屬性</td></tr>
+    <tr><td>&lt;物品名稱&gt;.type</td><td>list</td><td>物品屬性(food為食物)</td></tr>
+    <tr><td>&lt;物品名稱&gt;.gen</td><td>dict</td><td>物品食物屬性(非食物不填)</td></tr>
+    <tr><td>&lt;物品名稱&gt;.gen.health</td><td>int</td><td>食物回復血量</td></tr>
+    <tr><td>&lt;物品名稱&gt;.gen.cooked</td><td>bool</td><td>食物是否烹煮(不烹煮或已烹煮為True)</td></tr>
+    <tr><td>&lt;物品名稱&gt;.trade</td><td>dict</td><td>物品交易</td></tr>
+    <tr><td>&lt;物品名稱&gt;.trade.sold</td><td>int</td><td>物品售出價格</td></tr>
+    <tr><td>&lt;物品名稱&gt;.trade.buy</td><td>int</td><td>物品買入價格</td></tr>
   </table>
 </section>
 
@@ -177,10 +196,6 @@
         "max":&lt;區塊最多生成數量&gt;,
         "min":&lt;區塊最少生成數量&gt;
     },
-    "world": {
-        "max":&lt;世界最多生成數量&gt;,
-        "min":&lt;世界最少生成數量&gt;
-    },
   "type": ["&lt;type&gt;"]
 }
       </code></pre>
@@ -194,10 +209,6 @@
         "max":&lt;區塊最多生成數量&gt;,
         "min":&lt;區塊最少生成數量&gt;
     },
-    "world": {
-        "max":&lt;世界最多生成數量&gt;,
-        "min":&lt;世界最少生成數量&gt;
-    },
     "type": ["&lt;type&gt;"]
 }
       </code></pre>
@@ -208,28 +219,23 @@
     <tr><td>&lt;生物名稱&gt;.chunk</td><td>dict</td><td>區塊生成規則</td></tr>
     <tr><td>&lt;生物名稱&gt;.chunk.max</td><td>int</td><td>區塊最多生成數量</td></tr>
     <tr><td>&lt;生物名稱&gt;.chunk.min</td><td>int</td><td>區塊最少生成數量</td></tr>
-    <tr><td>&lt;生物名稱&gt;.world</td><td>dict</td><td>世界生成規則</td></tr>
-    <tr><td>&lt;生物名稱&gt;.world.max</td><td>int</td><td>世界最多生成數量</td></tr>
-    <tr><td>&lt;生物名稱&gt;.world.min</td><td>int</td><td>世界最少生成數量</td></tr>
-    <tr><td>&lt;生物名稱&gt;.type</td><td>list</td><td>生物類別</td></tr>
+    <tr><td>&lt;生物名稱&gt;.type</td><td>list</td><td>生物屬性</td></tr>
     <tr><td>&lt;方塊名稱&gt;.chunk</td><td>dict</td><td>區塊生成規則</td></tr>
     <tr><td>&lt;方塊名稱&gt;.chunk.max</td><td>int</td><td>區塊最多生成數量</td></tr>
     <tr><td>&lt;方塊名稱&gt;.chunk.min</td><td>int</td><td>區塊最少生成數量</td></tr>
-    <tr><td>&lt;方塊名稱&gt;.world</td><td>dict</td><td>世界生成規則</td></tr>
-    <tr><td>&lt;方塊名稱&gt;.world.max</td><td>int</td><td>世界最多生成數量</td></tr>
-    <tr><td>&lt;方塊名稱&gt;.world.min</td><td>int</td><td>世界最少生成數量</td></tr>
-    <tr><td>&lt;方塊名稱&gt;.type</td><td>list</td><td>方塊類別</td></tr>
+    <tr><td>&lt;方塊名稱&gt;.type</td><td>list</td><td>方塊屬性</td></tr>
   </table>
 </section>
 
 <section id="rules" class="container">
   <h2>驗證規則</h2>
   <ul>
+    <li>請加入支援伺服器或邀請機器人後使用>>dev-explore附帶模組檔案即可測試</li>
     <li>必填欄位必須存在，型態符合<a href="#required">必填欄位</a></li>
     <li>可選欄位若存在，型態必須符合<a href="#optional">生物物品註冊</a></li>
     <li>data 中的生物、方塊必須對應 rule 中的<a href="#gen-rule">生成規則</a></li>
-    <li>rule 中的生物、方塊必須在 data 中有資料。</li>
-    <li>若缺少 hp、drops、display-emoji 等關鍵欄位就會報錯。</li>
+    <li>rule 中的生物、方塊必須在 data 中有資料反之亦然</li>
+    <li>若缺少 hp、drops、display-emoji 等關鍵欄位就會報錯，若出現沒有的屬性則會出現警告</li>
   </ul>
 </section>
 
@@ -238,59 +244,100 @@
   <div class="code-block">
     <button class="copy-btn">複製</button>
     <pre><code>{
-    "info": {
-        "author": "command_cat",
-        "modename": "example",
-        "modeversion": "v1.2"
+  "info": {
+    "author": "command_cat",
+    "modename": "Example",
+    "modeversion": "1.1",
+    "dev-version": 1
+  },
+  "data": {
+    "animal": {
+      "cat": {
+        "hp": 10,
+        "drops": ["bone"],
+        "display-emoji": "🐱"
+      },
+      "dog": {
+        "hp": 12,
+        "drops": ["bone"],
+        "display-emoji": "🐶"
+      },
+      "fox": {
+        "hp": 8,
+        "drops": ["apple"],
+        "display-emoji": "🦊"
+      }
     },
-    "data": {
-        "animal": {
-            "cat": {
-                "hp":10,
-                "drops":["bone"],
-                "display-emoji":"🐱"
-            }
-        },
-        "block": {
-            "stone": {
-                "drops":["stone"],
-                "display-emoji":"🟫"
-            }
-        },
-        "item": {
-            "bone": {}
-        },
-        "map": [] // 可暫時忽略為空
+    "block": {
+      "stone": {
+        "drops": ["bone"],
+        "display-emoji": "🦴"
+      },
+      "soil": {
+        "drops": [],
+        "display-emoji": "🟫"
+      }
     },
-    "rule": {
-        "animal": {
-            "cat": {
-                "chunk":{
-                    "max":3,
-                    "min":1
-                },
-                "world":{
-                    "max":100,
-                    "min":50
-                },
-                "type":["default", "normal"] // 可暫時忽略為空
-            }
-        },
-        "block": {
-            "stone": {
-                "chunk":{
-                    "max":5,
-                    "min":3
-                },
-                "world":{
-                    "max":200,
-                    "min":100
-                },
-                "type":["default"] // 可暫時忽略為空
-            }
+    "item": {
+      "bone": {
+        "type": [],
+        "gen": {},
+        "trade": {
+          "sold": 0,
+          "buy": 0
         }
+      },
+      "apple": {
+        "type": ["food"],
+        "gen": {
+          "health": 3,
+          "cooked": true
+        },
+        "trade": {
+          "sold": 2,
+          "buy": 3
+        }
+      },
+      "steak": {
+        "type": ["food"],
+        "gen": {
+          "health": 5,
+          "cooked": true
+        },
+        "trade": {
+          "sold": 10,
+          "buy": 5
+        }
+      }
+    }
+  },
+  "rule": {
+    "animal": {
+      "cat": {
+        "chunk": { "max": 2, "min": 1 },
+        "type": ["normal"]
+      },
+      "dog": {
+        "chunk": { "max": 2, "min": 1 },
+        "type": ["normal"]
+      },
+      "fox": {
+        "chunk": { "max": 1, "min": 1 },
+        "type": ["default"]
+      }
     },
-    "type": ["normal"]
+    "block": {
+      "stone": {
+        "chunk": { "max": 3, "min": 1 },
+        "type": ["default"]
+      },
+      "soil": {
+        "chunk": { "max": 1, "min": 1 },
+        "type": ["default"]
+      }
+    }
+  },
+  "type": ["normal"]
 }</code></pre>
   </div>
 </section>
