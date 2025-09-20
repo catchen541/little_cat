@@ -173,7 +173,7 @@
       <button class="copy-btn">複製</button>
       <pre><code>
 "&lt;生物名稱&gt;": {
-    "chunck": {
+    "chunk": {
         "max":&lt;區塊最多生成數量&gt;,
         "min":&lt;區塊最少生成數量&gt;
     },
@@ -190,7 +190,7 @@
       <button class="copy-btn">複製</button>
       <pre><code>
 "&lt;方塊名稱&gt;": {
-    "chunck": {
+    "chunk": {
         "max":&lt;區塊最多生成數量&gt;,
         "min":&lt;區塊最少生成數量&gt;
     },
@@ -205,16 +205,16 @@
   </div>
   <table>
     <tr><th>欄位</th><th>型態</th><th>說明</th></tr>
-    <tr><td>&lt;生物名稱&gt;.chunck</td><td>dict</td><td>區塊生成規則</td></tr>
-    <tr><td>&lt;生物名稱&gt;.chunck.max</td><td>int</td><td>區塊最多生成數量</td></tr>
-    <tr><td>&lt;生物名稱&gt;.chunck.min</td><td>int</td><td>區塊最少生成數量</td></tr>
+    <tr><td>&lt;生物名稱&gt;.chunk</td><td>dict</td><td>區塊生成規則</td></tr>
+    <tr><td>&lt;生物名稱&gt;.chunk.max</td><td>int</td><td>區塊最多生成數量</td></tr>
+    <tr><td>&lt;生物名稱&gt;.chunk.min</td><td>int</td><td>區塊最少生成數量</td></tr>
     <tr><td>&lt;生物名稱&gt;.world</td><td>dict</td><td>世界生成規則</td></tr>
     <tr><td>&lt;生物名稱&gt;.world.max</td><td>int</td><td>世界最多生成數量</td></tr>
     <tr><td>&lt;生物名稱&gt;.world.min</td><td>int</td><td>世界最少生成數量</td></tr>
     <tr><td>&lt;生物名稱&gt;.type</td><td>list</td><td>生物類別</td></tr>
-    <tr><td>&lt;方塊名稱&gt;.chunck</td><td>dict</td><td>區塊生成規則</td></tr>
-    <tr><td>&lt;方塊名稱&gt;.chunck.max</td><td>int</td><td>區塊最多生成數量</td></tr>
-    <tr><td>&lt;方塊名稱&gt;.chunck.min</td><td>int</td><td>區塊最少生成數量</td></tr>
+    <tr><td>&lt;方塊名稱&gt;.chunk</td><td>dict</td><td>區塊生成規則</td></tr>
+    <tr><td>&lt;方塊名稱&gt;.chunk.max</td><td>int</td><td>區塊最多生成數量</td></tr>
+    <tr><td>&lt;方塊名稱&gt;.chunk.min</td><td>int</td><td>區塊最少生成數量</td></tr>
     <tr><td>&lt;方塊名稱&gt;.world</td><td>dict</td><td>世界生成規則</td></tr>
     <tr><td>&lt;方塊名稱&gt;.world.max</td><td>int</td><td>世界最多生成數量</td></tr>
     <tr><td>&lt;方塊名稱&gt;.world.min</td><td>int</td><td>世界最少生成數量</td></tr>
@@ -265,7 +265,7 @@
     "rule": {
         "animal": {
             "cat": {
-                "chunck":{
+                "chunk":{
                     "max":3,
                     "min":1
                 },
@@ -278,7 +278,7 @@
         },
         "block": {
             "stone": {
-                "chunck":{
+                "chunk":{
                     "max":5,
                     "min":3
                 },
